@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>HTML-常用API | Robin的技术博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="HTML," />
+  
+
+  <meta name="description" content="Web Storage对象 sessionStorage 会话存储（关闭当前窗口或浏览器即清除） localStorage 本地存储（永久存储在当前浏览器）  属性 length：只读，返回存储在 Storage 对象中的数据项数量。  方法 key()：接受一个数值 n 作为参数，并返回存储中的第 n 个键名 getItem()：该方法接受一个键名作为参数，返回键名对应的值。 setItem()">
+<meta name="keywords" content="HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML-常用API">
+<meta property="og:url" content="http://yoursite.com/2017/08/12/HTML-常用API/index.html">
+<meta property="og:site_name" content="Robin的技术博客">
+<meta property="og:description" content="Web Storage对象 sessionStorage 会话存储（关闭当前窗口或浏览器即清除） localStorage 本地存储（永久存储在当前浏览器）  属性 length：只读，返回存储在 Storage 对象中的数据项数量。  方法 key()：接受一个数值 n 作为参数，并返回存储中的第 n 个键名 getItem()：该方法接受一个键名作为参数，返回键名对应的值。 setItem()">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-13T12:29:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML-常用API">
+<meta name="twitter:description" content="Web Storage对象 sessionStorage 会话存储（关闭当前窗口或浏览器即清除） localStorage 本地存储（永久存储在当前浏览器）  属性 length：只读，返回存储在 Storage 对象中的数据项数量。  方法 key()：接受一个数值 n 作为参数，并返回存储中的第 n 个键名 getItem()：该方法接受一个键名作为参数，返回键名对应的值。 setItem()">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">导航</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">导航</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archive/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            归档
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web-Storage"><span class="toc-text">Web Storage</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对象"><span class="toc-text">对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性"><span class="toc-text">属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-text">方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件"><span class="toc-text">事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#与cookie的区别"><span class="toc-text">与cookie的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#indexedDB"><span class="toc-text">indexedDB</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web-Drag"><span class="toc-text">Web Drag</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#drag事件"><span class="toc-text">drag事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#drag时传递数据"><span class="toc-text">drag时传递数据</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web-Socket"><span class="toc-text">Web Socket</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性-1"><span class="toc-text">属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法-1"><span class="toc-text">方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件-1"><span class="toc-text">事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web-Worker"><span class="toc-text">Web Worker</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述-1"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用法"><span class="toc-text">用法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web-Geolocation"><span class="toc-text">Web Geolocation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述-2"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法-2"><span class="toc-text">方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FileReader"><span class="toc-text">FileReader</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#方法-3"><span class="toc-text">方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件-2"><span class="toc-text">事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用"><span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#表单"><span class="toc-text">表单</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#form属性"><span class="toc-text">form属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表单元素"><span class="toc-text">表单元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表单元素属性"><span class="toc-text">表单元素属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表单验证"><span class="toc-text">表单验证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#触发验证（点击触发）"><span class="toc-text">触发验证（点击触发）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元素验证属性"><span class="toc-text">元素验证属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元素禁用验证"><span class="toc-text">元素禁用验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元素验证事件"><span class="toc-text">元素验证事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验证对象"><span class="toc-text">验证对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验证对象的属性"><span class="toc-text">验证对象的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验证对象的方法"><span class="toc-text">验证对象的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义验证"><span class="toc-text">自定义验证</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#video"><span class="toc-text">video</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用法-1"><span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标签属性"><span class="toc-text">标签属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#video事件"><span class="toc-text">video事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#video对象方法"><span class="toc-text">video对象方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#video对象属性"><span class="toc-text">video对象属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#做一个自定义视频插件"><span class="toc-text">做一个自定义视频插件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#audio"><span class="toc-text">audio</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#canvas，svg和webGL"><span class="toc-text">canvas，svg和webGL</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-HTML-常用API" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">HTML-常用API</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.08.12</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Robin He</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/前端/">前端</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://www.github.com/helongbin/2017/08/12/HTML-常用API/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="Web-Storage"><a href="#Web-Storage" class="headerlink" title="Web Storage"></a>Web Storage</h1><h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><ol>
+<li>sessionStorage 会话存储（关闭当前窗口或浏览器即清除）</li>
+<li>localStorage 本地存储（永久存储在当前浏览器）</li>
+</ol>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><ol>
+<li>length：只读，返回存储在 Storage 对象中的数据项数量。</li>
+</ol>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ol>
+<li>key()：接受一个数值 n 作为参数，并返回存储中的第 n 个键名</li>
+<li>getItem()：该方法接受一个键名作为参数，返回键名对应的值。</li>
+<li>setItem()：该方法接受一个键名和值作为参数，将会把键值对添加到存储中，如果键名存在，则更新其对应的值。</li>
+<li>removeItem()：该方法接受一个键名作为参数，并把该键名从存储中删除。</li>
+<li>clear()：调用该方法会清空存储中的所有键名。</li>
+</ol>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>当值发生改变或者clear时，会发生storage事件（sessionStorage没有该事件）</p>
+<p>通过storage事件可以获取以下几个属性</p>
+<ol>
+<li>storageArea: 表示存储类型（Session或Local）</li>
+<li>key:发生改变项的key</li>
+<li>oldValue: key的原值</li>
+<li>newValue: key的新值</li>
+<li>url*: key改变发生的URL</li>
+</ol>
+<h2 id="与cookie的区别"><a href="#与cookie的区别" class="headerlink" title="与cookie的区别"></a>与cookie的区别</h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Cookie</th>
+<th>localStorage</th>
+<th>sessionStorage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据的生命期</td>
+<td>一般由服务器生成，可设置失效时间。如果在浏览器端生成Cookie，默认是关闭浏览器后失效</td>
+<td>除非被清除，否则永久保存</td>
+<td>仅在当前会话下有效，关闭页面或浏览器后被清除</td>
+</tr>
+<tr>
+<td>存放数据大小</td>
+<td>4K左右</td>
+<td>一般为5MB</td>
+<td>同左</td>
+</tr>
+<tr>
+<td>与服务器端通信</td>
+<td>每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</td>
+<td>仅在客户端（即浏览器）中保存，不参与和服务器的通信</td>
+<td>同左</td>
+</tr>
+<tr>
+<td>易用性</td>
+<td>需要程序员自己封装，源生的Cookie接口不友好</td>
+<td>源生接口可以接受，亦可再次封装来对Object和Array有更好的支持</td>
+<td>同左</td>
+</tr>
+</tbody>
+</table>
+<h1 id="indexedDB"><a href="#indexedDB" class="headerlink" title="indexedDB"></a>indexedDB</h1><p>该数据库是一种存储在客户端本地的 NoSQL 数据库，它可以存储大量的数据。相对于storage存取简单数据，indexedDB适用于存取大量结构化数据。</p>
+<p>由于没使用过，更多请参考<a href="https://github.com/lin-xin/blog/issues/12" target="_blank" rel="external">HTML5 进阶系列：indexedDB 数据库</a></p>
+<h1 id="Web-Drag"><a href="#Web-Drag" class="headerlink" title="Web Drag"></a>Web Drag</h1><p>该api实现了拖拽的事件，在这以前主要是通过mousedown、mousemove和mouseup来实现拖拽；</p>
+<h2 id="drag事件"><a href="#drag事件" class="headerlink" title="drag事件"></a>drag事件</h2><ol>
+<li>拖放源元素：dragSource<ul>
+<li>dragStart:拖拽开始事件</li>
+<li>drag：拖拽事件</li>
+<li>dragEnd：拖拽结束事件</li>
+</ul>
+</li>
+<li>拖放目标元素：dragTarget<ul>
+<li>dragEnter：拖拽进入目标事件</li>
+<li>dragOver：在目标元素上移动时触发的事件</li>
+<li>drop：在目标元素上释放事件</li>
+<li>dragleave：拖拽离开事件</li>
+</ul>
+</li>
+</ol>
+<h2 id="drag时传递数据"><a href="#drag时传递数据" class="headerlink" title="drag时传递数据"></a>drag时传递数据</h2><p>拖拽时源元素和目标元素之间的数据传递需要使用拖拽事件的dataTransfer对象</p>
+<ol>
+<li>获取方式：e.dataTransfer</li>
+<li>设置值：e.dataTransfer.setData(key,value)</li>
+<li>获取值：e.dataTransfer.getData(key)</li>
+<li>删除值：e.dataTransfer.clearData(key)</li>
+<li>e.dataTransfer.setDragImage(img,x,y)在拖放过程中，修改鼠标指针所指向的图像</li>
+</ol>
+<p><strong>利用dataTransfer来传递数据，目标阶段必须要在dragEnter、dragOver、drop事件中调用e.preventDefault(),这样才能正常完成拖放动作。</strong></p>
+<h1 id="Web-Socket"><a href="#Web-Socket" class="headerlink" title="Web Socket"></a>Web Socket</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>客户端与服务器端之间非http的通信机制</p>
+<ol>
+<li>全双工连接类型的网络协议</li>
+<li>特点是实时、高效，永久</li>
+<li>使用场景：聊天室、即时游戏<h2 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h2>readyState：代表当前连接的状态</li>
+</ol>
+<p>用法：WebSocket.CONNECTING</p>
+<ol>
+<li>CONNECTING:值0，正在连接中</li>
+<li>OPEN:1,已连接</li>
+<li>CLOSING：2，正在断开连接</li>
+<li>CLOSED:3，已断开连接</li>
+</ol>
+<h2 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h2><ol>
+<li>send(‘msg’) : 给服务器发消息</li>
+<li>close() ：关闭连接</li>
+</ol>
+<h2 id="事件-1"><a href="#事件-1" class="headerlink" title="事件"></a>事件</h2><ol>
+<li>open：打开连接，创建连接</li>
+<li>close：关闭连接</li>
+<li>message：来消息</li>
+<li>error：错误事件</li>
+</ol>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>使用node.js + faye-websocket-node</p>
+<ol>
+<li><p>服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//执行以下命令</div><div class="line">mkdir nodejs-faye-websocket</div><div class="line">cd nodejs-faye-websocket</div><div class="line">npm install faye-websocket</div><div class="line">app.js</div><div class="line">node app.js</div></pre></td></tr></table></figure>
+</li>
+<li><p>客户端</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">function checkBrowser()&#123;</div><div class="line">    if(window.WebSocket)&#123;</div><div class="line">    	log(&apos;该浏览器支持WebSocket！&apos;)</div><div class="line">    &#125;else&#123;</div><div class="line">    	log(&apos;该浏览器不支持WebSocket！&apos;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//创建并设置websocket</div><div class="line">function setup()&#123;</div><div class="line">	//创建websocket</div><div class="line">	var ws = new WebSocket(&apos;ws://localhost:3001&apos;);</div><div class="line">	</div><div class="line">	//通过4个事件做响应处理</div><div class="line">	//通过2个方法发送消息send或关闭连接close</div><div class="line">	//通过readyState属性判断连接状态</div><div class="line">	ws.onopen = function(e)&#123;</div><div class="line">		//连接成功</div><div class="line">		log(&apos;连接到服务器成功！&apos;,e);</div><div class="line">		sendMessage(&apos;hello,websocket&apos;);//发送消息给服务器</div><div class="line">		console.log(ws.readyState);//输出当前连接状态</div><div class="line">	&#125;</div><div class="line">	//接收消息事件</div><div class="line">	ws.onmessage = function(e)&#123;</div><div class="line">		log(&apos;RECEIVE:&apos;+e.data,e);</div><div class="line">		ws.close();//关闭连接方法</div><div class="line">		console.log(ws.readyState);//输出当前连接状态</div><div class="line">	&#125;</div><div class="line">	//连接关闭事件</div><div class="line">	ws.onclose = function(e)&#123;</div><div class="line">		log(&apos;Disconnected:&apos;,e);</div><div class="line">		console.log(ws.readyState);//输出当前连接状态</div><div class="line">	&#125;</div><div class="line">	//错误事件</div><div class="line">	ws.onerror = function(e)&#123;</div><div class="line">		log(&apos;Error&apos;,e);</div><div class="line">		console.log(ws.readyState);//输出当前连接状态</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	//给服务器发送消息方法</div><div class="line">	var sendMessage = function (msg)&#123;</div><div class="line">		ws.send(msg);//发送消息给服务器</div><div class="line">		log(&apos;SEND:&apos;+msg);</div><div class="line">	&#125;</div><div class="line">&#125;		</div><div class="line"></div><div class="line">//输入信息log函数:第一个参数代表消息，第二个参数代表相关事件</div><div class="line">function log(s,e)&#123;</div><div class="line">	//获取output元素</div><div class="line">	var output = document.getElementById(&apos;output&apos;);</div><div class="line">	var p = document.createElement(&apos;p&apos;);//创建段落</div><div class="line">	p.style.wordWrap = &apos;break-word&apos;;//自动换行</div><div class="line">	p.style.padding = &apos;10px&apos;;//边距</div><div class="line">	p.style.background = &apos;#eee&apos;;//背景色</div><div class="line">	p.innerHTML = s;//设置文本信息</div><div class="line">	output.appendChild(p);//追加到output中</div><div class="line">	console.log(s,e);</div><div class="line">&#125;</div><div class="line"></div><div class="line">checkBrowser();//检测兼容性</div><div class="line">setup();//创建websocket连接</div></pre></td></tr></table></figure>
+<h1 id="Web-Worker"><a href="#Web-Worker" class="headerlink" title="Web Worker"></a>Web Worker</h1><h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h2><p>web worker是模拟多线程的一个概念；它有以下几个优缺点：</p>
+<ol>
+<li>能实现js里面的多线程</li>
+<li>提高页面性能（不影响页面的性能）</li>
+<li>防止页面发生假死行为</li>
+<li>充分利用多核cpu的优势</li>
+<li>不能访问web页面、DOM API、全局变量</li>
+<li>可以使用setTimeout以及XMLHttpRequest通信</li>
+</ol>
+<p>另外Web workers可分为两种类型：专用线程dedicated web worker，以及共享线程shared web worker。</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>通过主线程和子线程之间信息的相互传递，来达到主线程负责页面效果实现，子线程（worker）负责复杂的运算，从而实现多线程（充分利用cpu，防页面假死）</p>
+<ol>
+<li>主线程postMessage，让worker做复杂的运算</li>
+<li>（子线程onmessage），做运算并将运算的结果postMessage给主线程</li>
+<li>主线程onmessage接收结果，然后实现</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1. 创建 var woker = new Worker(&apos;myworker.js&apos;);</div><div class="line">   注意：myworker.js必须是单独js文件</div><div class="line">2. 主线程和worker之间通信 worker.postMessage(msg);</div><div class="line">3. 监听消息事件 worker.onmessage = function(e)&#123;....&#125;</div><div class="line">4. 停止 worker: worker.terminate()</div></pre></td></tr></table></figure>
+<h1 id="Web-Geolocation"><a href="#Web-Geolocation" class="headerlink" title="Web Geolocation"></a>Web Geolocation</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><p>使用navigator.geolocation来获取当前地理对象；使用此api经常用来引入百度或者谷歌地图。</p>
+<h2 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h2><ol>
+<li>navigator.geolocation.getCurrentPosition(success,error);查看当前定位</li>
+<li>navigator.geolocation.watchPosition(success,error);监控当前位置</li>
+<li>navigator.geolocation.clearWatch()清除当前监控</li>
+</ol>
+<h1 id="FileReader"><a href="#FileReader" class="headerlink" title="FileReader"></a>FileReader</h1><h2 id="方法-3"><a href="#方法-3" class="headerlink" title="方法"></a>方法</h2><ol>
+<li>abort():void    终止文件读取操作</li>
+<li>readAsArrayBuffer(file):void 异步按字节读取文件内容，结果用ArrayBuffer对象表示</li>
+<li>readAsBinaryString(file):void 异步按字节读取文件内容，结果为文件的二进制串</li>
+<li>readAsDataURL(file):void    异步读取文件内容，结果用data:url的字符串形式表示</li>
+<li>readAsText(file,encoding):void 异步按字符读取文件内容，结果用字符串形式表示</li>
+</ol>
+<h2 id="事件-2"><a href="#事件-2" class="headerlink" title="事件"></a>事件</h2><ul>
+<li>onabort    当读取操作被中止时调用</li>
+<li>onerror    当读取操作发生错误时调用</li>
+<li>onload    当读取操作成功完成时调用</li>
+<li>onloadend    当读取操作完成时调用,不管是成功还是失败</li>
+<li>onloadstart    当读取操作将要开始之前调用</li>
+<li>onprogress    在读取数据过程中周期性调用</li>
+</ul>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ol>
+<li>在线预览本地文件<br> 通过FileReader的readAsDataURL方法，将图片转换成base64编码，直接将其显示在页面上。</li>
+<li>二进制数据上传<br> HTML5基于xhr2可以直接上传下载二进制数据，无需像以往一样通过form标签由后端拉取二进制内容。<br> FileReader的readAsArrayBuffer方法将File对象转换为ArrayBuffer，然后通过xhr.sendAsBinary直接将文件的ArrayBuffer内容装填至post body后发送。</li>
+</ol>
+<h1 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h1><h2 id="form属性"><a href="#form属性" class="headerlink" title="form属性"></a>form属性</h2><ol>
+<li>method：请求方法post/get</li>
+<li>action：请求路径login.php</li>
+<li>enctype：编码方式，值为以下三种<ul>
+<li>默认为application/x-www-form-urlencoded;（此属性表示表单编码方式的设置）</li>
+<li>multipart/form-data </li>
+<li>text/plain </li>
+</ul>
+</li>
+</ol>
+<h2 id="表单元素"><a href="#表单元素" class="headerlink" title="表单元素"></a>表单元素</h2><ol>
+<li>input：（type=）<ul>
+<li>text 文本</li>
+<li>password 密码框</li>
+<li>checkbox 多选</li>
+<li>radio 单选</li>
+<li>file 文件选择</li>
+<li>hidden 隐藏</li>
+<li>submit 提交</li>
+<li>reset 重置</li>
+<li>button 按钮</li>
+<li>email：校验时：@前后有字符即可</li>
+<li>number：属性有min，max，step；校验时必须在最大最小之间</li>
+<li>url：校验时：含http: .com即可</li>
+<li>tel：无校验</li>
+<li>color：value值为#000000；为string类型</li>
+<li>search：搜索框，目的是提供语义功能</li>
+<li>range：范围，滑动条；默认min=’1’ max=’100’ step=’1’ value=’50’</li>
+<li>date：设置可选日期范围min=’2015-09-08’ max=’2015-09-15’</li>
+<li>week：</li>
+<li>month：</li>
+<li>datetime：datetime兼容性不好，建议使用datetime-local</li>
+<li>datetime-local：</li>
+</ul>
+</li>
+<li>textarea 多行文本框</li>
+<li>select 下拉框</li>
+<li>datalist 不可见的数据列表</li>
+<li>progress 进度条</li>
+<li>meter 丈量元素</li>
+<li>output 可输出表单元素处理的结果</li>
+</ol>
+<h2 id="表单元素属性"><a href="#表单元素属性" class="headerlink" title="表单元素属性"></a>表单元素属性</h2><ol>
+<li>placeholder 占位符</li>
+<li>multiple 表示是否可以在input中输入多个值，值之间用逗号分隔即可</li>
+<li>autofocus 表示是否自动获取焦点</li>
+<li>form 表示当前标签属于哪个form</li>
+</ol>
+<h2 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h2><h3 id="触发验证（点击触发）"><a href="#触发验证（点击触发）" class="headerlink" title="触发验证（点击触发）"></a>触发验证（点击触发）</h3><ol>
+<li><code>&lt;input type=&quot;submit&quot; value=&quot;submit&quot;/&gt;</code></li>
+<li><code>&lt;button&gt;button&lt;/button&gt;</code></li>
+</ol>
+<h3 id="元素验证属性"><a href="#元素验证属性" class="headerlink" title="元素验证属性"></a>元素验证属性</h3><ul>
+<li>required：布尔值属性</li>
+<li>pattern：值为字符串格式的正则表达式<br>  注意：该校验不会检测内容必填，如果用户没有填写内容，校验不会进行。（所以最好和required组合使用）</li>
+<li>min/max/step：用于包含number、date、range等的input的验证约束</li>
+<li>minlength/maxlength：验证input的输入字符串的长度<br>  注意：minlength/maxlength是HTML5新属性，chrome较新版本才有该属性（和validity.tooShort，validity.tooLong一样）<ul>
+<li>minlength不是标准的w3c属性（未对外公布），但是却可以使用，校验信息提示的是英文，慎用。</li>
+<li>如果用编程方式给input赋值超过了规定范围，校验不会被触发，可以认为是个bug，注意。</li>
+</ul>
+</li>
+<li>validity：自定义校验的核心属性，可以通过该属性获得一个ValidityState对象，该对象有很多属性可以获得相应的校验通过的状态。<br>  注意事项：<ul>
+<li>该属性只有表单元素才有，表单没有</li>
+<li>有些浏览器没有validity.tooShort属性，导致minlength校验不能触发。</li>
+</ul>
+</li>
+</ul>
+<h3 id="元素禁用验证"><a href="#元素禁用验证" class="headerlink" title="元素禁用验证"></a>元素禁用验证</h3><ol>
+<li>novalidate：布尔值属性，form元素的属性，提交表单时不会验证</li>
+<li>formnovalidate：布尔值属性，submit类型input的属性</li>
+</ol>
+<p>注意：以上两个表面上一样的功能，实际上有区别，第二个仅用于测试，第一个是有实际用途的，比如我们要使用其他校验框架。</p>
+<h3 id="元素验证事件"><a href="#元素验证事件" class="headerlink" title="元素验证事件"></a>元素验证事件</h3><p>invalid事件</p>
+<ol>
+<li>如果加在表单元素上，则如果该元素校验未通过，会触发该事件。如果有多个元素都添加该事件，只有那些校验未通过的才能触发事件。</li>
+<li>invalid事件默认在捕获阶段和目标阶段结束后，不进行冒泡；所以目标的父元素form想要绑定事件的话，必须在捕获阶段</li>
+<li>让chrome的默认提示信息不显示event.preventDefault()</li>
+<li>使用场景：<ul>
+<li>你关心错误的那些组件事件</li>
+<li>你不关心具体什么错误</li>
+</ul>
+</li>
+<li>invalid事件的局限性：<ul>
+<li>只能找到校验错误的对象</li>
+<li>不能精确判断错误类型</li>
+</ul>
+</li>
+<li>属性：<ul>
+<li>target：验证不通过的元素</li>
+<li>type：事件类型</li>
+<li>bubbles：该事件是否为冒泡</li>
+<li>cancelable：是否可以取消该事件</li>
+</ul>
+</li>
+</ol>
+<h3 id="验证对象"><a href="#验证对象" class="headerlink" title="验证对象"></a>验证对象</h3><p>元素的validity属性===ValidityState对象</p>
+<p>通过表单元素的validity属性获得ValidityState对象，该对象有很多属性，这些属性能够精确判断错误类型：</p>
+<h3 id="验证对象的属性"><a href="#验证对象的属性" class="headerlink" title="验证对象的属性"></a>验证对象的属性</h3><ul>
+<li>valid：合法的，该属性指出元素是否验证通过，它为true说明校验通过，否则不通过。<strong>该属性是总开关，总阀门。</strong></li>
+<li>valueMissing：未填写必填项，相应的校验属性是required</li>
+<li>patternMismatch：模式匹配错误，相对应的验证属性pattern</li>
+<li>typeMismatch：类型是否错误，典型的是email和url</li>
+<li>tooLong：对应maxlength，暂时触发不了（陷阱1，由于chrome版本低）</li>
+<li>tooShort：对应minlength，校验字符太短</li>
+<li>rangeOverflow：对应属性max</li>
+<li>rangeUnderflow:对应属性min</li>
+<li>stepMismatch：对应属性step，和step设置的值不匹配（比如值有小数点）</li>
+<li>badInput：类型转换错误，比如number里面输入字符串</li>
+<li>customError：当使用setCustomValidity方法设置自定义错误提示信息以后，该值为true，因此如果不把setCustomValidity重置为空，则验证永远无法通过。（陷阱2）</li>
+</ul>
+<h3 id="验证对象的方法"><a href="#验证对象的方法" class="headerlink" title="验证对象的方法"></a>验证对象的方法</h3><ol>
+<li>setCustomValidity(str)：该方法可以设置自定义错误提示信息<ul>
+<li>注意：只是修改chrome表单提交时默认的提示内容</li>
+<li>使用它时，务必在输入合法时把他设置为空，否则验证永远无法通过</li>
+<li>输入合法性判断千万不能用checkValidity()，也不能用elem.validity.valid</li>
+</ul>
+</li>
+<li>checkValidity()<br>该方法可以返回调用者校验结果，如果是元素就是元素的校验结果，如果是表单，则整个表单内部所有校验结果(相当于点击submit)。</li>
+</ol>
+<p>//调用checkValidity（）可以手动检查校验结果，等同于elem.validity.valid<br>//elem.checkValidity()  == elem.validity.valid</p>
+<h3 id="自定义验证"><a href="#自定义验证" class="headerlink" title="自定义验证"></a>自定义验证</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//$表示jQuery</div><div class="line">$(&apos;input:eq(0)&apos;).bind(&#123;</div><div class="line">    blur:function()&#123;</div><div class="line">		if(!this.validity.valid)&#123;</div><div class="line">		  $(this).next().css(&apos;color&apos;,&apos;#f00&apos;);</div><div class="line">			if(this.validity.valueMissing)&#123;</div><div class="line">				$(this).next().html(&apos;*用户名不能为空&apos;);</div><div class="line">			&#125;else if(this.validity.tooShort)&#123;</div><div class="line">				$(this).next().html(&apos;用户名太短&apos;);</div><div class="line">			&#125;else if(this.validity.tooLong)&#123;</div><div class="line">				$(this).next().html(&apos;用户名太长&apos;);</div><div class="line">			&#125;else if(this.validity.patternMismatch)&#123;</div><div class="line">				$(this).next().html(&apos;用户名格式错误&apos;);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">			</div><div class="line">	&#125;,</div><div class="line">	focus:function()&#123;	</div><div class="line">		$(this).next().html(&apos;请输入用户名，数字5~10位&apos;).css(&apos;color&apos;,&apos;#333&apos;);</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="video"><a href="#video" class="headerlink" title="video"></a>video</h1><h2 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h2><ol>
+<li>相比较flash，浏览器原生支持，且性能比较好</li>
+<li>支持的视频格式： mp4，ogv和webm（网页唯一超高清的视频格式）</li>
+<li>使用</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;video src=&apos;../data/oceans-clip.mp4&apos; controls poster=&apos;Koala.jpg&apos;&gt;</div><div class="line">    &lt;!-- 多个视频源（以防浏览器不支持某种格式） --&gt;</div><div class="line">    &lt;source src=&apos;../data/oceans-clip.mp4&apos;&gt;  </div><div class="line">    &lt;source src=&apos;../data/oceans-clip.ogv&apos;&gt;</div><div class="line">    &lt;source src=&apos;../data/oceans-clip.webm&apos;&gt;</div><div class="line">    </div><div class="line">    &lt;!-- 视频无法播放时显示的内容 --&gt;</div><div class="line">    可能由于浏览器的不支持，导致视频无法播放，请升级您的浏览器</div><div class="line">&lt;/video&gt;</div></pre></td></tr></table></figure>
+<h2 id="标签属性"><a href="#标签属性" class="headerlink" title="标签属性"></a>标签属性</h2><ol>
+<li>src：视频源</li>
+<li>width：定义宽</li>
+<li>height：定义高</li>
+<li>autoplay：只需属性名，无需属性值；用于设置是否自动播放</li>
+<li>controls：是否显示控件</li>
+<li>loop：是否重复播放</li>
+<li>autobuffer：是否自动缓冲</li>
+<li>poster：其值为一张图片的url；表示在播放视频之前，显示一张图片（高宽需和视频一致）</li>
+<li>preload：<ul>
+<li>auto，要求浏览器尽快下载当前视频</li>
+<li>none，不缓存视频（某些教育网站的视频不让缓存在本地）</li>
+<li>metadata，播放前只加载视频的高宽及其他信息</li>
+</ul>
+</li>
+</ol>
+<h2 id="video事件"><a href="#video事件" class="headerlink" title="video事件"></a>video事件</h2><ol>
+<li>play：当播放当前视频时触发</li>
+<li>pause：当暂停当前视频时触发</li>
+<li>ended：当当前视频结束播放时触发</li>
+<li>error：当当前视频播放出错时触发</li>
+<li>canplay：当播放视频，同时下载视频（当前视频可以播放）</li>
+<li>canplaythrough：整个视频可以顺利播放（下载完毕）</li>
+<li>progess：用于更新媒体的下载进度，会周期性的触发</li>
+</ol>
+<h2 id="video对象方法"><a href="#video对象方法" class="headerlink" title="video对象方法"></a>video对象方法</h2><ol>
+<li>play()：用于播放当前视频（自定义控件时很有用）</li>
+<li>pause()：用于暂停当前视频（自定义控件时很有用）</li>
+<li>load()：用于加载视频文件</li>
+<li>canplayType()：判断浏览器是否支持某些视频格式</li>
+</ol>
+<h2 id="video对象属性"><a href="#video对象属性" class="headerlink" title="video对象属性"></a>video对象属性</h2><ol>
+<li>paused：返回布尔值，表示当前视频是否为暂停状态</li>
+<li>play：返回布尔值，表示当前视频是否为播放状态</li>
+<li>ended：返回布尔值，播放结束为true</li>
+<li>duration：返回当前视频的时长，单位为秒</li>
+<li>currentTime：返回播放视频的当前位置</li>
+</ol>
+<h2 id="做一个自定义视频插件"><a href="#做一个自定义视频插件" class="headerlink" title="做一个自定义视频插件"></a>做一个自定义视频插件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">// 1. 获取播放视频的button按钮</div><div class="line">var btn = document.getElementById(&quot;play&quot;);</div><div class="line">// 2. 获取&lt;video&gt;元素</div><div class="line">var mmedia = document.getElementById(&quot;mmedia&quot;);</div><div class="line">// 3. 为button按钮绑定事件</div><div class="line">btn.onclick = function()&#123;</div><div class="line">	// 判断当前视频是播放状态还是暂停状态</div><div class="line">	if(mmedia.paused &amp;&amp; !mmedia.ended)&#123; // 当前是暂停状态</div><div class="line">		// 实现播放视频功能</div><div class="line">		mmedia.play();</div><div class="line">		// 修改button显示内容</div><div class="line">		btn.innerHTML = &quot;Pause&quot;;</div><div class="line">		// 动态控制进度条</div><div class="line">		t = setInterval(&quot;changeStatus();&quot;,1000);</div><div class="line">	&#125;else&#123;	// 当前是播放状态</div><div class="line">		mmedia.pause();</div><div class="line">		btn.innerHTML = &quot;Play&quot;;</div><div class="line">		clearInterval(t);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 定义进度条的总宽度</div><div class="line">var maxwidth = 600;</div><div class="line">// 获取进度条元素</div><div class="line">var progress = document.getElementById(&quot;progress&quot;);</div><div class="line">// 该函数用于动态控制进度条</div><div class="line">function changeStatus()&#123;</div><div class="line">	// 判断当前视频是否播放完毕</div><div class="line">	if(!mmedia.ended)&#123;</div><div class="line">		// 1. 获取当前视频时长对应的宽度</div><div class="line">		var size = mmedia.currentTime*maxwidth/mmedia.duration;</div><div class="line">		// 2. 将HTML页面表示进度条的元素的width设置为计算的结果</div><div class="line">		progress.style.width = size + &quot;px&quot;;</div><div class="line">	&#125;else&#123;</div><div class="line">		// 清除setInterval()定时器</div><div class="line">		clearInterval(t);</div><div class="line">		// 将页面进度条的样式清空</div><div class="line">		progress.style.width = 0 + &quot;px&quot;;</div><div class="line">		// 将button按钮的文本修改为Play</div><div class="line">		btn.innerHTML = &quot;Play&quot;;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="audio"><a href="#audio" class="headerlink" title="audio"></a>audio</h1><p>audio支持mp3，ogg，wav三种音频格式，其他用法（标签属性，事件，对象方法，对象属性，包括自定义控件）与video完全一致。</p>
+<h1 id="canvas，svg和webGL"><a href="#canvas，svg和webGL" class="headerlink" title="canvas，svg和webGL"></a>canvas，svg和webGL</h1><p>canvas和svg都是HTML中用于图形技术；但两者又有明显的用途区分：</p>
+<ol>
+<li>canvas基于像素，只能脚本驱动，适合像素处理，动态渲染和大数据量绘制（多用于游戏）；</li>
+<li>svg基于矢量，适合静态图片展示，高保真文档查看和打印的应用场景；</li>
+<li>webGL常用于实现3D效果；<br>因为本人没有使用过，所以不做概述。</li>
+</ol>
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">觉得我的文章有帮助，可以支持一下</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/08/06/HTML-常用标签/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archive/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              归档
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2017/08/12/HTML-常用API/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+    
+
+    
+	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

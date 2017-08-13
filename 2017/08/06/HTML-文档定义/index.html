@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Robin的技术博客">
 <meta property="og:description" content="doctype&amp;lt;!DOCTYPE&amp;gt; 声明位于文档中的最前面，处于  标签之前。告知浏览器以何种模式来渲染文档。 1&amp;lt;!DOCTYPE html&amp;gt; Html5没有严格模式和混杂模式的区分，它相对宽松的语法已经最大实现了向后兼容。 metameta常用于定义页面的说明，关键字，最后修改日期，和其它的元数据。这些元数据将服务于浏览器（如何布局或重载页面），搜索引擎和其它网络服务。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-06T14:43:59.000Z">
+<meta property="og:updated_time" content="2017-08-12T08:33:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML-文档定义">
 <meta name="twitter:description" content="doctype&amp;lt;!DOCTYPE&amp;gt; 声明位于文档中的最前面，处于  标签之前。告知浏览器以何种模式来渲染文档。 1&amp;lt;!DOCTYPE html&amp;gt; Html5没有严格模式和混杂模式的区分，它相对宽松的语法已经最大实现了向后兼容。 metameta常用于定义页面的说明，关键字，最后修改日期，和其它的元数据。这些元数据将服务于浏览器（如何布局或重载页面），搜索引擎和其它网络服务。">
@@ -138,7 +138,7 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#doctype"><span class="toc-text">doctype</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#meta"><span class="toc-text">meta</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#charset"><span class="toc-text">charset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#name"><span class="toc-text">name</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http-equiv"><span class="toc-text">http-equiv</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#doctype"><span class="toc-text">doctype</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#meta"><span class="toc-text">meta</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#charset"><span class="toc-text">charset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#name"><span class="toc-text">name</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http-equiv"><span class="toc-text">http-equiv</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#语法与属性"><span class="toc-text">语法与属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性"><span class="toc-text">属性</span></a></li></ol></li></ol>
   </div>
 
 
@@ -243,6 +243,17 @@
 </li>
 </ol>
 <p><strong>http-equiv非常重要的一个用途是用来做http缓存控制，cache-control、expires配合last-modify等以及etag使用</strong>，这里不做赘述</p>
+<h1 id="语法与属性"><a href="#语法与属性" class="headerlink" title="语法与属性"></a>语法与属性</h1><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ol>
+<li>标签大小写皆可；</li>
+<li>布尔值属性若为true只需要写属性即可，例如checked=‘true’不需要写成checked=’checked’，可以写成checked；</li>
+<li>属性可以省略引号，但若属性中有空格则必须加上引号；<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2></li>
+<li>script的defer、async属性；</li>
+<li>内部作用域样式；</li>
+<li>data-key自定义属性；</li>
+<li>tabindex表示tab键的先后顺序；</li>
+<li>contenteditable页面内容是否可以编辑；</li>
+<li>designMode，写在script中的js属性，值为on时，表示整个页面内容皆可编辑；</li>
+</ol>
 
     
   </div>
@@ -273,7 +284,7 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2017/07/28/hello-world/">
+    <a class="show pull-left" href="/2017/07/28/前端知识体系/">
         <i class="icon icon-angle-left"></i>
     </a>
     <a class="show pull-right" href="/2017/08/06/HTML-常用标签/">
