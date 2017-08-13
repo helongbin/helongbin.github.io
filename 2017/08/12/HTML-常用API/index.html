@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Robin的技术博客">
 <meta property="og:description" content="Web Storage对象 sessionStorage 会话存储（关闭当前窗口或浏览器即清除） localStorage 本地存储（永久存储在当前浏览器）  属性 length：只读，返回存储在 Storage 对象中的数据项数量。  方法 key()：接受一个数值 n 作为参数，并返回存储中的第 n 个键名 getItem()：该方法接受一个键名作为参数，返回键名对应的值。 setItem()">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-13T12:29:17.000Z">
+<meta property="og:updated_time" content="2017-08-13T14:06:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML-常用API">
 <meta name="twitter:description" content="Web Storage对象 sessionStorage 会话存储（关闭当前窗口或浏览器即清除） localStorage 本地存储（永久存储在当前浏览器）  属性 length：只读，返回存储在 Storage 对象中的数据项数量。  方法 key()：接受一个数值 n 作为参数，并返回存储中的第 n 个键名 getItem()：该方法接受一个键名作为参数，返回键名对应的值。 setItem()">
@@ -38,7 +38,7 @@
 
 
   
-    <link rel="stylesheet" href="/css/personal-style.css">
+    <link rel="stylesheet" href="/css/fexo-personal.css">
   
 
   
@@ -281,8 +281,9 @@
 <ol>
 <li>全双工连接类型的网络协议</li>
 <li>特点是实时、高效，永久</li>
-<li>使用场景：聊天室、即时游戏<h2 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h2>readyState：代表当前连接的状态</li>
+<li>使用场景：聊天室、即时游戏</li>
 </ol>
+<h2 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h2><p>readyState：代表当前连接的状态</p>
 <p>用法：WebSocket.CONNECTING</p>
 <ol>
 <li>CONNECTING:值0，正在连接中</li>
@@ -322,7 +323,7 @@
 <h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>通过主线程和子线程之间信息的相互传递，来达到主线程负责页面效果实现，子线程（worker）负责复杂的运算，从而实现多线程（充分利用cpu，防页面假死）</p>
 <ol>
 <li>主线程postMessage，让worker做复杂的运算</li>
-<li>（子线程onmessage），做运算并将运算的结果postMessage给主线程</li>
+<li>子线程onmessage，做运算并将运算的结果postMessage给主线程</li>
 <li>主线程onmessage接收结果，然后实现</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1. 创建 var woker = new Worker(&apos;myworker.js&apos;);</div><div class="line">   注意：myworker.js必须是单独js文件</div><div class="line">2. 主线程和worker之间通信 worker.postMessage(msg);</div><div class="line">3. 监听消息事件 worker.onmessage = function(e)&#123;....&#125;</div><div class="line">4. 停止 worker: worker.terminate()</div></pre></td></tr></table></figure>

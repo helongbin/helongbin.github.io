@@ -1,0 +1,25 @@
+
+/* 修改段落样式 */
+.article-content p {
+	margin: 1em 0 0 0;
+	line-height: 1.8em;
+}
+
+/* p后面紧跟列表 */
+.article-content p + ol, .article-content p + ul {
+	margin-top: 0;
+}
+
+/* 设置一级列表的行高 */
+li{
+	line-height: 1.8em;
+}
+/* 设置二级列表的行高 */
+li li {
+	line-height: 1.5em;
+}
+
+/* 修改list-style 小圆点 颜色*/
+.article-content ul li:before {
+	background-color: #555;
+}
