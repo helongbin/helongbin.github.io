@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS | Robin的技术博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="CSS," />
+  
+
+  <meta name="description" content="基础部分选择器id，class，elementCSS是通过选择器的权重来决定样式的优先级。其中id权重为100，class为10，element为1。    #id，.class和element分别可以选中HTML元素 后代选择器后代选择器有三种  div p：选中div的所有为p的子元素 div + p：选中div之后的第一个兄弟元素p div ~ p：选中div之后所有为p的兄弟元素  属性选">
+<meta name="keywords" content="CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS">
+<meta property="og:url" content="http://yoursite.com/2017/09/09/CSS/index.html">
+<meta property="og:site_name" content="Robin的技术博客">
+<meta property="og:description" content="基础部分选择器id，class，elementCSS是通过选择器的权重来决定样式的优先级。其中id权重为100，class为10，element为1。    #id，.class和element分别可以选中HTML元素 后代选择器后代选择器有三种  div p：选中div的所有为p的子元素 div + p：选中div之后的第一个兄弟元素p div ~ p：选中div之后所有为p的兄弟元素  属性选">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-09T15:31:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS">
+<meta name="twitter:description" content="基础部分选择器id，class，elementCSS是通过选择器的权重来决定样式的优先级。其中id权重为100，class为10，element为1。    #id，.class和element分别可以选中HTML元素 后代选择器后代选择器有三种  div p：选中div的所有为p的子元素 div + p：选中div之后的第一个兄弟元素p div ~ p：选中div之后所有为p的兄弟元素  属性选">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/fexo-personal.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">导航</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">导航</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archive/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            归档
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基础部分"><span class="toc-text">基础部分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#选择器"><span class="toc-text">选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#id，class，element"><span class="toc-text">id，class，element</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后代选择器"><span class="toc-text">后代选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性选择器"><span class="toc-text">属性选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪类选择器"><span class="toc-text">伪类选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪元素选择器"><span class="toc-text">伪元素选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容生成"><span class="toc-text">内容生成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础属性"><span class="toc-text">基础属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#列表"><span class="toc-text">列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表格"><span class="toc-text">表格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文本"><span class="toc-text">文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#边框"><span class="toc-text">边框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内外边距"><span class="toc-text">内外边距</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#渐变"><span class="toc-text">渐变</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#布局"><span class="toc-text">布局</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#布局属性"><span class="toc-text">布局属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#显示"><span class="toc-text">显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浮动"><span class="toc-text">浮动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定位"><span class="toc-text">定位</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#布局方式"><span class="toc-text">布局方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#响应式"><span class="toc-text">响应式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex"><span class="toc-text">flex</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#flex布局概念"><span class="toc-text">flex布局概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器的属性"><span class="toc-text">容器的属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目的属性"><span class="toc-text">项目的属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grid"><span class="toc-text">grid</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#动画"><span class="toc-text">动画</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#transform"><span class="toc-text">transform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transition"><span class="toc-text">transition</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#animation"><span class="toc-text">animation</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-CSS" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">CSS</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.09.09</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Robin He</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/前端/">前端</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://www.github.com/helongbin/2017/09/09/CSS/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="基础部分"><a href="#基础部分" class="headerlink" title="基础部分"></a>基础部分</h1><h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><h3 id="id，class，element"><a href="#id，class，element" class="headerlink" title="id，class，element"></a>id，class，element</h3><p>CSS是通过选择器的权重来决定样式的优先级。其中id权重为100，class为10，element为1。  </p>
+<p> #id，.class和element分别可以选中HTML元素</p>
+<h3 id="后代选择器"><a href="#后代选择器" class="headerlink" title="后代选择器"></a>后代选择器</h3><p>后代选择器有三种</p>
+<ol>
+<li>div p：选中div的所有为p的子元素</li>
+<li>div + p：选中div之后的第一个兄弟元素p</li>
+<li>div ~ p：选中div之后所有为p的兄弟元素</li>
+</ol>
+<h3 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h3><ol>
+<li>[id]</li>
+<li>p[id]</li>
+<li>p[id][class]:有id属性有class属性的p</li>
+<li>p[id=”sum”]：id值为sum的p</li>
+<li>p[class^=”b”]：属性值以b开头的p元素</li>
+<li>p[class*=”b”]：属性值中含b的所有p元素</li>
+<li>p[class$=”b”]：属性值以b结尾的p元素</li>
+<li>p[class~=”myClass”]:class值有多个、其中一个值是myClass(必须是一个独立的单词)的p元素  </li>
+<li>否定伪类：选择器:not([条件])<br> p:not([id=”sum”])：id不为sum的p元素（用的不多，有兼容性问题）</li>
+</ol>
+<h3 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h3><ol>
+<li>目标伪类: target 选择当前正在被跳转到的锚点元素<br> 例如: <a href="#news1">跳转到新闻1</a><br>   <div id="news1">新闻1</div><br> 样式：div:target{color:red;},表示点击a时，div的字体颜色会变成红色;<br> 点击其他元素时，div会变回原样（所以只能选择一个）<br> 特点一：仅选择一个<br> 特点二：通过点击，触发其他元素样式变化的变化</li>
+<li>元素状态伪类<ul>
+<li>:enabled 匹配每个可用的元素（表单）</li>
+<li>:disabled 匹配每个禁用的元素（表单）</li>
+<li>:checked 匹配每个被选中的元素（单选框和多选框）</li>
+</ul>
+</li>
+<li>结构伪类<ul>
+<li>子元素:first-child 匹配属于其父元素的首个子元素(例：p必须是“body的第一个子元素”才能被选中)</li>
+<li>子元素:last-child 匹配属于其父元素的最后一个子元素</li>
+<li>子元素:only-child 匹配属于其父元素的唯一子元素</li>
+<li>子元素:nth-child(2) 匹配属于其父元素的第二个子元素，仅括号内为变量，表示第几个</li>
+<li>父元素:empty 匹配没有子节点的每个元素（不能有空格，空格也是节点）</li>
+</ul>
+</li>
+</ol>
+<h3 id="伪元素选择器"><a href="#伪元素选择器" class="headerlink" title="伪元素选择器"></a>伪元素选择器</h3><ol>
+<li>p:first-letter 首字</li>
+<li>p:first-line   首行</li>
+<li>p::section 匹配被用户选中的部分（只能应用color和background-color样式）</li>
+</ol>
+<h3 id="内容生成"><a href="#内容生成" class="headerlink" title="内容生成"></a>内容生成</h3><ol>
+<li>选择器:before{content:”要插入的内容”}</li>
+<li>选择器:after{content:”要插入的内容”}</li>
+<li>计数器示例: css的取号机，一般和内容生成一起使用,分三步  <ol>
+<li>父元素上定义一个计数器属性<br> 父元素{counter-reset:计数器名 开始值}  </li>
+<li>需要生成序号的元素上定义计数器的步进<br> 需要生成序号的选择器{counter-increment:计数器名 步进数}</li>
+<li>在伪元素选择器中使用内容生成，生成序号<br> 选择器:before{content:”第”counter(计数器名)”章 “}</li>
+</ol>
+</li>
+</ol>
+<h2 id="基础属性"><a href="#基础属性" class="headerlink" title="基础属性"></a>基础属性</h2><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><ul>
+<li>list-style-type:disc（实心圆）/square（实心方块）/circle（空心圆）/none—–无序列表</li>
+<li>list-style-type:decimal(默认为数字)/lower-roman/upper-roman/none</li>
+<li>list-style-image:url();</li>
+<li>list-style-position:outside/inside—–列表标记是否显示在文本内</li>
+</ul>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><ul>
+<li>vertical-align:top/middle/bottom(单元格内内容的对齐方式)</li>
+<li>border-collapse：separate/collapse（相邻td的边框合并）—–table的属性</li>
+<li>border-spacing：水平间距 垂直间距（设置相邻td边框的间距）—–table的属性<br>  仅在border-collapse：separate的情况下生效</li>
+<li>caption-side:top/bottom</li>
+<li>table-layout:auto（自动表格布局，列宽由单元格内容设定）/fixed（表格列宽强制为某个值，不因内容而改变）</li>
+</ul>
+<h3 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h3><ul>
+<li>white-space:normal/nowrap(不换行)</li>
+<li>text-overflow:clip（裁剪）/ellipsis（后面出现….）<br>  此属性必须先设置overflw:hidden和white-space:nowrap才会看到效果</li>
+<li>word-wrap:normal/break-word—–长单词换行</li>
+<li>word-break:normal/break-all/keep-all—–文本换行</li>
+</ul>
+<h3 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h3><ul>
+<li>border-color：transparent（透明的）/hidden</li>
+<li>border-style</li>
+<li>border-width</li>
+<li>border-radius：<ul>
+<li>border-top-left-radius</li>
+<li>border-top-right-radius</li>
+<li>border-bottom-right-radius</li>
+<li>border-bottom-left-radius</li>
+</ul>
+</li>
+<li>border-shadow(水平偏移 垂直偏移 阴影模糊值 阴影外延值 阴影颜色 outset/inset) 阴影颜色默认与框内文字颜色一致</li>
+<li>border-image:source width repeat;</li>
+<li>outline(轮廓) width style color</li>
+</ul>
+<h3 id="内外边距"><a href="#内外边距" class="headerlink" title="内外边距"></a>内外边距</h3><ol>
+<li>padding</li>
+<li>margin</li>
+</ol>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ul>
+<li>background: color image repeat attachment position</li>
+<li>background-color:</li>
+<li>background-image：</li>
+<li>background-repeat：repeat/repeat-x/repeat-y/no-repeat</li>
+<li>background-size: 宽度，高度—-（设置一个值只会赋给宽度，高度按比例显示）<ul>
+<li>如果宽高都是百分之百，那么图像的四边贴近边框的四边，但可能图像不是很和比例</li>
+<li>如果是cover，图像长短边都会放大，短边放大到和边框一样大，长边会比边框长，所以图像有些内容会溢出并隐藏</li>
+<li>如果是contain，图像长短边都会放大，长边放大到和边框一样大，所以两个短边和一个长边会贴近边框</li>
+</ul>
+</li>
+<li>background-attachment：fixed/scroll（图片随着容器或父元素一起滚动）/local（图片随着子元素或文本内容一起滚动）</li>
+<li>background-position：x y （px /% / left/right/bottom/top/center）先水平偏移，后垂直偏移;<br>  给小图留位置：使用padding-left;或者使用空格</li>
+<li>background-clip：border-box(默认值)/padding-box/content-box——–背景色的裁剪</li>
+<li>background-orign：border-box/padding-box(默认值)/content-box——-背景图的裁剪</li>
+</ul>
+<h3 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h3><ul>
+<li>background-image：渐变方式（angel，color-1，color-2）<ul>
+<li>渐变方式: <ol>
+<li>线性渐变：linear-gradient</li>
+<li>径向渐变：radial-gradient</li>
+<li>重复渐变：<br> repeating-linear-gradient 重复线性渐变<br> repeating-radial-gradient重复径向渐变</li>
+</ol>
+</li>
+<li>angel: to-top(对应0deg) to-right(90deg) to-bottom(180edg) to-left(270deg)</li>
+</ul>
+</li>
+<li>示例<ul>
+<li>background-image:linear-gradient(180deg,#f00 50%,#0f0 70%,#fff 100%);  表示渐变角度以及各颜色所在的位置</li>
+<li>background-image:radial-gradient(100px at 30px 90px,#f00 20%,#0f0 50%,#fff 100%);<br>表示半径100px，表示水平方向距离左侧30px，垂直方向距离顶端90px；如果不定义position则默认居中</li>
+<li>background-image:repeating-linear-gradient(to bottom,#f00 0%,#0f0 20%);</li>
+</ul>
+</li>
+</ul>
+<h1 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h1><h2 id="布局属性"><a href="#布局属性" class="headerlink" title="布局属性"></a>布局属性</h2><h3 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h3><ul>
+<li>display:none（不显示不占据空间）/block/inline/inline-blcok(行内块元素，例如input，img可以设置宽高)</li>
+<li>visibility:visible/hidden(不可见但会占据空间)/collapse（用在删除表格的某行某列，但不影响表格布局）</li>
+<li>opacity：0~1取值（默认为1）—–透明属性</li>
+<li>vertical-align:baseline（父元素基线上）/top/bottom/middle—–用于设置单元格或行内块元素的垂直对齐方式<br>给行内最高的那个元素设置属性会对行内其他元素产生影响</li>
+<li>cursor：default/pointer（小手）/crosshair（十字）/text（I字形）/wait（转圈）/help（带问号）</li>
+</ul>
+<h3 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h3><ul>
+<li>float:none/left/right<br>浮动流和普通流同时存在，框与框之间因为浮动可以重叠，但是内容不会重叠，普通流内容会位于浮动元素的后面</li>
+<li>clear：left/right/both;</li>
+<li>overflow：hidden<br>父元素下如果都是浮动流，如果父元素没有定义高度，那么父元素的高度将不会随着子元素浮动流而扩展，因为子元素都是浮动流，跳出普通块了，应设置overflow:hidden</li>
+</ul>
+<h3 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h3><ul>
+<li>position:可取值如下<ul>
+<li>static/relative(相对于原来的位置、所占空间不变)</li>
+<li>absolute（相对于定位（最好是relative）的父元素或者定位的祖父元素或body、所占空间移除）<br><strong>拥有absolute的元素无法居中对齐</strong></li>
+<li>fixed（相对于浏览器窗口不变、所占空间完全移除）</li>
+</ul>
+</li>
+<li>偏移属性：top bottom right left属性，用于定位元素框的偏移位置</li>
+<li>z-index：堆叠顺序（要求元素已定位）</li>
+</ul>
+<h2 id="布局方式"><a href="#布局方式" class="headerlink" title="布局方式"></a>布局方式</h2><h3 id="响应式"><a href="#响应式" class="headerlink" title="响应式"></a>响应式</h3><p>三步实现响应式布局</p>
+<ol>
+<li>meta标签设置viewport</li>
+</ol>
+<p><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</code></p>
+<ol>
+<li>CSS media query  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@media screen and (max-width:980px)&#123;</div><div class="line">      #pagewrap &#123;</div><div class="line">        width: 94%;</div><div class="line">      &#125;</div><div class="line">      #content &#123;</div><div class="line">        width: 65%;</div><div class="line">      &#125;</div><div class="line">      #sidebar &#123;</div><div class="line">        width: 30%;</div><div class="line">      &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h3><h4 id="flex布局概念"><a href="#flex布局概念" class="headerlink" title="flex布局概念"></a>flex布局概念</h4><ol>
+<li><p>任何容器都可以指定为flex布局</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">a. 块级元素flex布局</div><div class="line">.box&#123;</div><div class="line">  display: flex;</div><div class="line">&#125;</div><div class="line">b. 行内元素flex布局</div><div class="line">.box&#123;</div><div class="line">  display: inline-flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>容器设定了flex布局之后， 子元素的float， clear和vertical-align将失效</p>
+</li>
+<li>采用flex布局的元素为flex容器， 所有子元素自动成为容器成员， 为flex item</li>
+<li>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。<br> 项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。</li>
+</ol>
+<h4 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h4><ol>
+<li><p>flex-direction<br> 决定主轴的方向（即项目的排列方向）。<br> flex-direction: row | row-reverse | column | column-reverse;</p>
+</li>
+<li><p>flex-wrap<br> 定义，如果一条轴线排不下，如何换行。<br> flex-wrap: nowrap | wrap | wrap-reverse;</p>
+</li>
+<li><p>flex-flow<br> 属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</p>
+</li>
+<li><p>justify-content<br> 定义了项目在主轴上的对齐方式。<br> justify-content: flex-start | flex-end | center | space-between | space-around;</p>
+</li>
+<li><p>align-items<br> 定义项目在交叉轴上如何对齐。<br> align-items: stretch | flex-start | flex-end | center | baseline ;</p>
+</li>
+<li><p>align-content<br> 定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。<br> align-content: stretch | flex-start | flex-end | center | space-between | space-around ;</p>
+</li>
+</ol>
+<h4 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h4><ol>
+<li><p>order<br> 定义项目的排列顺序。数值越小，排列越靠前，默认为0。可以为负值</p>
+</li>
+<li><p>flex-grow<br> 定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。<br> 如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
+</li>
+<li><p>flex-shrink<br> 定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。<br> 如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。</p>
+</li>
+<li><p>flex-basis<br> 定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。<br> 它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</p>
+</li>
+<li><p>flex<br> flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。<br> 建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+</li>
+<li><p>align-self<br> align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。<br> align-self: auto | flex-start | flex-end | center | baseline | stretch;</p>
+</li>
+</ol>
+<h3 id="grid"><a href="#grid" class="headerlink" title="grid"></a>grid</h3><p>grid兼容性不是很好，暂不学习</p>
+<h1 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h1><h2 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h2><p>变形发生时，不会挤压周围元素，但有可能会覆盖（给父元素设置overflow：hidden即可）<br>旋转：rotate()  位移：translate()  缩放：scale()  倾斜：skew()<br>常用写法：transform:rotate()translate()sca()skew();</p>
+<ol>
+<li>旋转：围绕一个<em>参照原点</em>旋转<em>指定角度</em> （注：坐标原点在左上角；参照原点默认在中心）<ul>
+<li>参照原点：transform-origin:100% 100%;//transform-origin:right bottom;//transform-origin:x坐标 y坐标;<strong>要设置参照原点时，需放在其他属性之前；</strong></li>
+<li>旋转角度：transform:rotate(ndeg);<br>  位移：transform:translate(x,y);//translateX();//translateY();</li>
+<li>缩放：transform:scale(x,y);取一个值时是等比例缩放，取两值表示x、y方向上的缩放比例//scaleX();//scaleY();<strong>缩放也会受参照原点的影响，参照原点的位置在变形中永远不变</strong></li>
+<li>倾斜：transform:skew(ndeg,ndeg);//skewX();//skewY();</li>
+</ul>
+</li>
+<li>3d变形：<ul>
+<li>perspective属性：假定的人眼位置到投影平面（网页）的距离</li>
+<li>如何使用：在3d变换元素的父元素上定义perspective属性</li>
+</ul>
+</li>
+<li>3d位移：transform:translateZ();//translate3d(x,y,z)  <strong>注意：沿Z轴位移会导致其他坐标轴刻度缩小或放大</strong></li>
+<li>3d旋转：特指沿任意一个坐标轴旋转  <ul>
+<li>transform:rotateX(ndeg);n&gt;0向后倒 反之前倾  </li>
+<li>rotateY(ndeg);n&gt;0向右转，反之向左  </li>
+<li>rotateZ(ndeg);==transform:rotate(ndeg);  </li>
+<li>rotate3d(x,y,z,ndeg);<br>其中x,y,z取1（正向）或-1（反向）</li>
+</ul>
+</li>
+<li>3d缩放：transform:scaleZ();//scale3d(x,y,z)<br> 将对应坐标轴上的坐标*相应倍数（先缩放后位移，那么位移值会按缩放比例变化）</li>
+</ol>
+<blockquote>
+<p>注：transform属性后可以同时使用多种变化函数，浏览器会从左至右依次变化；<br>如果变化函数放在多个transform属性中，后面的transform会覆盖之前的.<br>rotate函数原理：旋转整个坐标轴，所以rotate()最好写在最后面（HTML5 canvas的旋转也是一样的原理）</p>
+</blockquote>
+<p>transform:translateX(100px) rotate(30deg)<br>transform:rotate(30deg) translateX(100px)<br>上下两个语句效果不一样</p>
+<h2 id="transition"><a href="#transition" class="headerlink" title="transition"></a>transition</h2><p>transition 从<em>开始样式</em> 经过<em>指定时间</em>后，缓慢过渡到<em>结束样式</em><br>transition:需要过渡的属性 过渡所需时间 过渡函数 经过多长时间过渡开始;<br>强调：和开始样式写在一起；在结束样式中，和开始样式属性值不一致的属性名会发生渐变.<br>如果要设置参照原点样式也要放在开始样式中（表示开始和结束的参照原点一样）<br>多个属性同时过渡可简写为(也可以写后面分别设置属性、时间、函数和延迟的方法)：</p>
+<ol>
+<li>transition:属性1 时长 变化类型 [延迟],<br> 属性2 时长 变化类型 [延迟],<br> 属性3 时长 变化类型 [延迟];</li>
+<li>transition-property:属性名1 属性名2 属性名3。。。。</li>
+<li>transition-duration:ns/nms ns/nms ns/nms 。。。。</li>
+<li>transition-timing-function:。。。。。。。<br> 可以有以下几个值：<br> ease(先加速后减速)<br> linear：匀速<br> ease-in：加速<br> ease-out：减速<br> ease-in-out：先加速后减速</li>
+<li>transition-delay:ns/nms。。。。。</li>
+</ol>
+<h2 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h2><p>关键帧：动画运行过程中的关键样式状态<br>关键帧动画：动画在多个关键帧之间顺序变化</p>
+<p>如何实现：2步</p>
+<ol>
+<li><p>定义动画，设计动画中的关键帧  </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@keyframes 动画名&#123;</div><div class="line">from&#123;动画初始状态&#125;</div><div class="line">n%&#123;动画运行到n%位置时的状态&#125;</div><div class="line">... ... </div><div class="line">to&#123;动画结束状态&#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>需要出发动画的位置，触发动画<br> animation:动画名 动画持续时间 动画的类型 … </p>
+</li>
+</ol>
+<p>动画子属性：</p>
+<ul>
+<li>animation-name:</li>
+<li>animation-duration:</li>
+<li>animation-timing-function:</li>
+<li>animation-fill-mode:none/forwards/backwards/both;</li>
+<li>animation-delay:</li>
+<li>animation-iteration-count:n/infinite(无限次)</li>
+<li>animation-direction:normal(默认)/alternate（轮流播放，即单数次正常播放，偶数次反向播放）</li>
+<li>animation-play-state:paused（暂停）/running（运行）<br>  注：animation-play-state不能简写到一起，需单独写在hover里面才会生效</li>
+</ul>
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">觉得我的文章有帮助，可以支持一下</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/08/12/HTML-常用API/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archive/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              归档
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2017/09/09/CSS/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+    
+
+    
+	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
