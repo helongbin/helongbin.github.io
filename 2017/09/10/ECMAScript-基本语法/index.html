@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>ECMAScript-基本语法 | Robin的技术博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="JavaScript," />
+  
+
+  <meta name="description" content="简介一个完整的JavaScript实现应该由三个不同的部分组成：核心（ECMAScript）、文档对象模型（DOM）、浏览器对象模型（BOM） HTML中使用JavaScriptscript元素 type属性默认为text/javascript src为外部脚本文件 defer设置后脚本会被延迟到整个页面都解析完毕后再运行 async设置后立即下载该脚本文件但延迟执行  文档模式如果在文档开始处没">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ECMAScript-基本语法">
+<meta property="og:url" content="http://yoursite.com/2017/09/10/ECMAScript-基本语法/index.html">
+<meta property="og:site_name" content="Robin的技术博客">
+<meta property="og:description" content="简介一个完整的JavaScript实现应该由三个不同的部分组成：核心（ECMAScript）、文档对象模型（DOM）、浏览器对象模型（BOM） HTML中使用JavaScriptscript元素 type属性默认为text/javascript src为外部脚本文件 defer设置后脚本会被延迟到整个页面都解析完毕后再运行 async设置后立即下载该脚本文件但延迟执行  文档模式如果在文档开始处没">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-10T13:53:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ECMAScript-基本语法">
+<meta name="twitter:description" content="简介一个完整的JavaScript实现应该由三个不同的部分组成：核心（ECMAScript）、文档对象模型（DOM）、浏览器对象模型（BOM） HTML中使用JavaScriptscript元素 type属性默认为text/javascript src为外部脚本文件 defer设置后脚本会被延迟到整个页面都解析完毕后再运行 async设置后立即下载该脚本文件但延迟执行  文档模式如果在文档开始处没">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/fexo-personal.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">导航</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">导航</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archive/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            归档
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML中使用JavaScript"><span class="toc-text">HTML中使用JavaScript</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#script元素"><span class="toc-text">script元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文档模式"><span class="toc-text">文档模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#noscript"><span class="toc-text">noscript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ECMAScript-6"><span class="toc-text">ECMAScript 6</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基本概念"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量"><span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通过var声明"><span class="toc-text">通过var声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过let声明"><span class="toc-text">通过let声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过const声明"><span class="toc-text">通过const声明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#typeof"><span class="toc-text">typeof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Undefined"><span class="toc-text">Undefined</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Null"><span class="toc-text">Null</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Boolean"><span class="toc-text">Boolean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Number"><span class="toc-text">Number</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String"><span class="toc-text">String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Symbol"><span class="toc-text">Symbol</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Object"><span class="toc-text">Object</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作符"><span class="toc-text">操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一元操作符-–"><span class="toc-text">一元操作符(++,–,+,-)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位操作符-amp-lt-lt-gt-gt-gt-gt-gt"><span class="toc-text">位操作符(~,&,|,^,<<,>>,>>>)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#布尔操作符-amp-amp"><span class="toc-text">布尔操作符(!,&&,||)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#乘性操作符"><span class="toc-text">乘性操作符(*,/,%)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加性操作符"><span class="toc-text">加性操作符(+,-)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关系操作符-gt-lt-gt-lt"><span class="toc-text">关系操作符(>,<,>=,<=)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相等操作符"><span class="toc-text">相等操作符(=\==,!\==,==,!=)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#条件操作符-boolean-expression-true-value-false-value"><span class="toc-text">条件操作符(boolean_expression?true_value:false_value)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#逗号操作符"><span class="toc-text">逗号操作符(,)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#赋值操作符-以及-、-等复合赋值运算符"><span class="toc-text">赋值操作符(=以及*=、+=等复合赋值运算符)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语句"><span class="toc-text">语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#for-in"><span class="toc-text">for-in</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#with"><span class="toc-text">with</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-of"><span class="toc-text">for-of</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#箭头函数"><span class="toc-text">箭头函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator-函数"><span class="toc-text">Generator 函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本概念-1"><span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yield语句"><span class="toc-text">yield语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#与Iterator的关系"><span class="toc-text">与Iterator的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#next方法的参数"><span class="toc-text">next方法的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for…of循环"><span class="toc-text">for…of循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#throw方法"><span class="toc-text">throw方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yield-语句"><span class="toc-text">yield*语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作为对象属性的Generator函数"><span class="toc-text">作为对象属性的Generator函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数是Generator函数"><span class="toc-text">构造函数是Generator函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generator函数推导"><span class="toc-text">Generator函数推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generator与状态机"><span class="toc-text">Generator与状态机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generator与协程"><span class="toc-text">Generator与协程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用"><span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#尾调用优化"><span class="toc-text">尾调用优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块"><span class="toc-text">模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#export命令"><span class="toc-text">export命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#import命令"><span class="toc-text">import命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块的整体输入"><span class="toc-text">模块的整体输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#module命令"><span class="toc-text">module命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#export-default命令"><span class="toc-text">export default命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块的继承"><span class="toc-text">模块的继承</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误处理"><span class="toc-text">错误处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#try-catch-语句"><span class="toc-text">try-catch 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#finally-子句"><span class="toc-text">finally 子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#错误类型"><span class="toc-text">错误类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#抛出错误"><span class="toc-text">抛出错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#错误-error-事件"><span class="toc-text">错误( error )事件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#变量、作用域和内存问题"><span class="toc-text">变量、作用域和内存问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本类型和引用类型的值"><span class="toc-text">基本类型和引用类型的值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行环境及作用域"><span class="toc-text">执行环境及作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾收集"><span class="toc-text">垃圾收集</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-ECMAScript-基本语法" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">ECMAScript-基本语法</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.09.10</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Robin He</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/前端/">前端</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://www.github.com/helongbin/2017/09/10/ECMAScript-基本语法/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>一个完整的JavaScript实现应该由三个不同的部分组成：核心（ECMAScript）、文档对象模型（DOM）、浏览器对象模型（BOM）</p>
+<h1 id="HTML中使用JavaScript"><a href="#HTML中使用JavaScript" class="headerlink" title="HTML中使用JavaScript"></a>HTML中使用JavaScript</h1><h2 id="script元素"><a href="#script元素" class="headerlink" title="script元素"></a>script元素</h2><ol>
+<li>type属性默认为text/javascript</li>
+<li>src为外部脚本文件</li>
+<li>defer设置后脚本会被延迟到整个页面都解析完毕后再运行</li>
+<li>async设置后立即下载该脚本文件但延迟执行</li>
+</ol>
+<h2 id="文档模式"><a href="#文档模式" class="headerlink" title="文档模式"></a>文档模式</h2><p>如果在文档开始处没有发现文档类型声明，则所有浏览器都会默认开启混杂模式.</p>
+<ol>
+<li>混杂模式（quirks mode）混杂模式会让IE的行为与（包含非标准特性的）IE5相同，</li>
+<li>标准模式（standards mode）。而标准模式则让IE的行为更接近标准行为。</li>
+</ol>
+<h2 id="noscript"><a href="#noscript" class="headerlink" title="noscript"></a>noscript</h2><p>包含在noscript元素中的内容只有在这些情况下才会显示出来：浏览器不支持脚本；浏览器支持脚本，但脚本被禁用。</p>
+<h2 id="ECMAScript-6"><a href="#ECMAScript-6" class="headerlink" title="ECMAScript 6"></a>ECMAScript 6</h2><h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ol>
+<li>ECMAScript中的一切（变量、函数名和操作符）都区分大小写</li>
+<li>标识符规则: 第一个字符必须是一个字母、下划线（_）或一个美元符号（$）；其他字符可以是字母、下划线、美元符号或数字。建议采用驼峰命名法</li>
+<li>单行注释和块级注释.</li>
+<li>不要省略分号</li>
+<li>启用严格模式: 可以在顶部添加如下代码： “use strict”;</li>
+</ol>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ol>
+<li><strong>ECMAScript 的变量是松散类型的，所谓松散类型就是可以用来保存任何类型的数据。</strong>  </li>
+<li><strong>ES6规定，var和function声明的全局变量，属于全局对象的属性；let命令、const命令、class命令声明的全局变量，不属于全局对象的属性。</strong></li>
+</ol>
+<h3 id="通过var声明"><a href="#通过var声明" class="headerlink" title="通过var声明"></a>通过var声明</h3><ol>
+<li>定义变量应该使用var操作符（不使用var操作符将会定义一个全局变量，这种方式不被推荐），后面跟一个变量名。</li>
+<li>var message像这样只是声明一个变量，并没有初始化，它的值将是undefined。</li>
+<li><strong>声明提前</strong>: JavaScript引擎解释时会把所有用var声明的变量都提升到当前作用域的最前面。</li>
+</ol>
+<h3 id="通过let声明"><a href="#通过let声明" class="headerlink" title="通过let声明"></a>通过let声明</h3><ol>
+<li>es6支持块级作用域, let声明不会提前</li>
+<li>let不允许在相同作用域内，重复声明同一个变量。</li>
+<li>使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”（temporal dead zone，简称TDZ）。  </li>
+</ol>
+<p>下面皆会报错</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> a = <span class="number">10</span>;</div><div class="line">  <span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> a = <span class="number">10</span>;</div><div class="line">  <span class="keyword">let</span> a = <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="通过const声明"><a href="#通过const声明" class="headerlink" title="通过const声明"></a>通过const声明</h3><ol>
+<li>es6中const用来声明常量, </li>
+<li>其他用法和let一致</li>
+</ol>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ol>
+<li>ECMAScript中有5种简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有1种复杂数据类型——Object，其本质是一组无序的名值对组成</li>
+<li>ES6引入了一种新的基本数据类型Symbol，是一种特殊的、不可变的数据类型，可以作为对象属性的标识符使用。</li>
+<li>现在共有七种数据类型：Undefined, Null, Boolean, String, Symbol, Number和Object.</li>
+</ol>
+<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><ol>
+<li>注意，typeof是一个操作符而不是函数，因此例子中的圆括号尽管可以使用，但不是必需的。</li>
+<li>typeof操作符的操作数可以是变量（message），也可以是数值字面量。</li>
+<li>typeof的返回值</li>
+</ol>
+<ul>
+<li>“undefined” 如果这个值未定义</li>
+<li>“boolean” 如果这个值是布尔值</li>
+<li>“string” 如果这个值是字符串</li>
+<li>“number” 如果这个值是数值</li>
+<li>“object” 如果这个值是对象或者null</li>
+<li>“function” 如果这个值是函数</li>
+<li>“symbol” 如果这个值是Symbol类型（ES6新增）</li>
+</ul>
+<h3 id="Undefined"><a href="#Undefined" class="headerlink" title="Undefined"></a>Undefined</h3><ol>
+<li>Undefined类型只有一个值，即特殊的undefined。在使用var声明变量但未对其加以初始化时，这个变量的值就是undefined</li>
+<li>对未初始化和未声明的变量执行 typeof 操作符都返回 undefined 值，但是如果直接访问未声明的变量就会报错了。</li>
+<li>对于尚未声明过的变量，只能执行一项操作，即使用typeof操作符检测其数据类型，这也是typeof存在的最大意义了。</li>
+</ol>
+<h3 id="Null"><a href="#Null" class="headerlink" title="Null"></a>Null</h3><ol>
+<li>Null类型是第二个只有一个值的数据类型，这个特殊的值是 null。</li>
+<li>null 值表示一个空对象指针，而这也正是使用 typeof 操作符检测 null 值时会返回”object”的原因</li>
+<li>undefined值是派生自null值的，null == undefined将会返回true。</li>
+<li>如果定义的变量准备在将来用于保存对象，那么最好将该变量初始化为null而不是其他值。这样一来，只要直接检查null 值就可以知道相应的变量是否已经保存了一个对象的引用</li>
+</ol>
+<h3 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h3><ol>
+<li>可以对任何数据类型的值调用Boolean()函数，而且总会返回一个Boolean值，你也可以在任何数据前加!!使其转化为Boolean类型。</li>
+<li>转换规则</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>转换为true的值</th>
+<th>转换为false的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boolean</td>
+<td>true</td>
+<td>false</td>
+</tr>
+<tr>
+<td>String</td>
+<td>非空字符串</td>
+<td>“”</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>非零数字值（包括无穷大）</td>
+<td>0和NaN</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>任何对象</td>
+<td>null</td>
+</tr>
+<tr>
+<td>Undefined</td>
+<td>n/a（不适用）</td>
+<td>undefined</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h3><ol>
+<li>八进制字面量在严格模式下是无效的</li>
+<li>默认情况下，ECMAScript会将那些小数点后面带有 6个零以上的浮点数值转换为以 e表示法表示的数值（例如，0.0000003会被转换成3e-7）</li>
+<li>如果浮点数值本身表示的就是一个整数（如1.0），那么该值也会被转换为整数</li>
+<li>永远不要测试某个特定的浮点数值。 关于浮点数值计算会产生舍入误差的问题，有一点需要明确：这是使用基于IEEE754数值的浮点计算的通病，ECMAScript并非独此一家；其他使用相同数值格式的语言也存在这个问题。</li>
+<li>NaN: <strong>任何涉及 NaN 的操作（例如 NaN/10）都会返回 NaN，这个特点在多步计算中有可能导致问题。其次，NaN与任何值都不相等，包括NaN本身.</strong></li>
+<li>isNaN(): 这个函数接受一个参数，该参数可以是任何类型，而函数会帮我们确定这个参数是否“不是数值”</li>
+<li>最小值: Number.MIN_VALUE; 最大值: Number.MAX_VALUE; 无穷;  Infinity 值</li>
+<li>isFinite(): 判断是否有穷</li>
+<li>Number(): 非数值转换为数值, 可以用于任何数据类型</li>
+<li>parseInt(): 用于把字符串转换成数值; 这个函数提供第二个参数：转换时使用的基数（即多少进制）。<ul>
+<li>转换字符串时会忽略字符串前面的空格，直至找到第一个非空格字符。如果第一个字符不是数字字符或者负号，parseInt()就会返回 NaN；</li>
+<li>如果第一个字符是数字字符，parseInt()会继续解析第二个字符，直到解析完所有后续字符或者遇到了一个非数字字符。例如，”1234blue”会被转换为1234，因为”blue”会被完全忽略</li>
+</ul>
+</li>
+<li>parseFloat(): 用于把字符串转换成数值;<ul>
+<li>小数点有效</li>
+<li>parseFloat()可以识别前面讨论过的所有浮点数值格式，也包括十进制整数格式。但十六进制格式的字符串则始终会被转换成0。</li>
+<li>由于parseFloat()只解析十进制值，因此它没有用第二个参数指定基数的用法。最后还要注意一点：如果字符串包含的是一个可解析为整数的数（没有小数点，或者小数点后都是零），parseFloat()会返回整数。</li>
+</ul>
+</li>
+</ol>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><ol>
+<li>转义字符被作为一个字符来解析</li>
+<li>String(): 这个函数能够将任何类型的值转换为字符串。</li>
+<li>totoString():      <ul>
+<li>数值、布尔值、对象和字符串值（没错，每个字符串也都有一个toString()方法，该方法返回字符串的一个副本）都有toString()方法。但null和undefined值没有这个方法。</li>
+<li>多数情况下，调用toString()方法不必传递参数。但是，在调用数值的toString()方法时，可以传递一个参数：输出数值的基数</li>
+</ul>
+</li>
+<li>可以使用加号+操作符把某个值与以空字符加在一起来转换为字符串。</li>
+</ol>
+<h3 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h3><ol>
+<li>Symbol，表示独一无二的值。对象的属性名现在可以有两种类型，一种是原来就有的字符串，另一种就是新增的Symbol类型。凡是属性名属于Symbol类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。</li>
+<li>Symbol生成的是类似字符串的原始类型值, 不能添加属性, 不能使用new命令</li>
+<li>Symbol函数可以接受一个字符串作为参数，表示对Symbol实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分。</li>
+<li>注意，Symbol函数的参数只是表示对当前Symbol值的描述，因此相同参数的Symbol函数的返回值是不相等的。</li>
+<li>Symbol值不能与其他类型的值进行运算，会报错。但是，Symbol值可以转为字符串。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var sym = Symbol(&apos;My symbol&apos;);</div><div class="line">var a = &quot;your symbol is &quot; + sym; //报错</div><div class="line">String(sym) // &apos;Symbol(My symbol)&apos;</div><div class="line">sym.toString() // &apos;Symbol(My symbol)&apos;</div></pre></td></tr></table></figure>
+<ol>
+<li>对象属性名使用Symbol</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> mySymbol = <span class="built_in">Symbol</span>();</div><div class="line"></div><div class="line"><span class="comment">// 第一种写法</span></div><div class="line"><span class="keyword">var</span> a = &#123;&#125;;</div><div class="line">a[mySymbol] = <span class="string">'Hello!'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 第二种写法</span></div><div class="line"><span class="keyword">var</span> a = &#123;</div><div class="line">  [mySymbol]: <span class="string">'Hello!'</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 第三种写法</span></div><div class="line"><span class="keyword">var</span> a = &#123;&#125;;</div><div class="line"><span class="built_in">Object</span>.defineProperty(a, mySymbol, &#123; <span class="attr">value</span>: <span class="string">'Hello!'</span> &#125;);</div><div class="line"></div><div class="line"><span class="comment">// 以上写法都得到同样结果</span></div><div class="line">a[mySymbol] <span class="comment">// "Hello!"</span></div></pre></td></tr></table></figure>
+<ol>
+<li>Symbol值作为对象属性名时，不能用点运算符。同理，在对象的内部，使用Symbol值定义属性时，Symbol值必须放在方括号之中。</li>
+<li>Symbol类型还可以用于定义一组常量，保证这组常量的值都是不相等的。</li>
+<li>Symbol值作为属性名时，该属性还是公开属性，不是私有属性。</li>
+<li>Symbol作为属性名，该属性不会出现在for…in、for…of循环中，也不会被Object.keys()、Object.getOwnPropertyNames()返回。</li>
+<li>Object.getOwnPropertySymbols方法返回一个数组，成员是当前对象的所有用作属性名的Symbol值。</li>
+<li><p>Symbol方法:</p>
+<ul>
+<li><p>Symbol.for(): 接受一个字符串作为参数，然后搜索有没有以该参数作为名称的Symbol值。如果有，就返回这个Symbol值，否则就新建并返回一个以该字符串为名称的Symbol值。</p>
+<blockquote>
+<p>Symbol.for()与Symbol()这两种写法，都会生成新的Symbol。它们的区别是，前者会被登记在全局环境中供搜索，后者不会。</p>
+</blockquote>
+</li>
+<li><p>Symbol.keyFor(): 返回一个已登记的Symbol类型值的key。</p>
+<blockquote>
+<p>需要注意的是，Symbol.for为Symbol值登记的名字，是全局环境的，可以在不同的iframe或service worker中取到同一个值。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>内置的Symbol值<br>除了定义自己使用的Symbol值以外，ES6还提供一些内置的Symbol值，指向语言内部使用的方法。</p>
+<ul>
+<li>对象的Symbol.hasInstance属性，指向一个内部方法。该对象使用instanceof运算符时，会调用这个方法，判断该对象是否为某个构造函数的实例。比如，foo instanceof Foo在语言内部，实际调用的是Foo[Symbol.hasInstance](foo)。</li>
+<li>对象的Symbol.isConcatSpreadable属性，指向一个方法。该对象使用Array.prototype.concat()时，会调用这个方法，返回一个布尔值，表示该对象是否可以扩展成数组。</li>
+<li>对象的Symbol.isRegExp属性，指向一个方法。该对象被用作正则表达式时，会调用这个方法，返回一个布尔值，表示该对象是否为一个正则对象。</li>
+<li>对象的Symbol.match属性，指向一个函数。当执行str.match(myObject)时，如果该属性存在，会调用它，返回该方法的返回值。</li>
+<li>对象的Symbol.replace属性，指向一个方法，当该对象被String.prototype.replace方法调用时，会返回该方法的返回值。</li>
+<li>对象的Symbol.search属性，指向一个方法，当该对象被String.prototype.search方法调用时，会返回该方法的返回值。</li>
+<li>对象的Symbol.split属性，指向一个方法，当该对象被String.prototype.split方法调用时，会返回该方法的返回值。</li>
+<li>对象的Symbol.iterator属性，指向一个方法，即该对象进行for…of循环时，会调用这个方法，返回该对象的Iterator对象。</li>
+<li>对象的Symbol.toPrimitive属性，指向一个方法。该对象被转为原始类型的值时，会调用这个方法，返回该对象对应的原始类型值。</li>
+<li>对象的Symbol.toStringTag属性，指向一个方法。在该对象上面调用Object.prototype.toString方法时，如果这个属性存在，它的返回值会出现在toString方法返回的字符串之中，表示对象的类型。也就是说，这个属性可以用来定制[object Object]或[object Array]中object后面的那个字符串。</li>
+<li>对象的Symbol.unscopables属性，指向一个对象。该对象指定了使用with关键字时，哪些属性会被with环境排除。</li>
+</ul>
+</li>
+</ol>
+<h3 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h3><p>Object每个实例都具有下列属性和方法</p>
+<ul>
+<li>Constructor：保存用于创建当前对象的函数，即构造函数</li>
+<li>hasOwnProperty(propertyName)：用于检查给定的属性在当前对象实例中（而不是在实例的原型中）是否存在，propertyName必须是字符串</li>
+<li>isPrototypeOf(object)：用于检查传入的对象是否是另一个对象的原型</li>
+<li>propertyIsEnumerable(propertyName)：用于检查给定的属性是否能够使用for-in语句来枚举。参数必须是字符串</li>
+<li>toLocaleString()：返回对象的字符串表示，与执行环境的地区对应</li>
+<li>toString()：返回对象的字符串表示</li>
+<li>valueOf()：分返回对象的字符串、数值或布尔值表示。通常与toString方法返回值相同。</li>
+</ul>
+<h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><h3 id="一元操作符-–"><a href="#一元操作符-–" class="headerlink" title="一元操作符(++,–,+,-)"></a>一元操作符(++,–,+,-)</h3><ol>
+<li>应用于非数值的值时，递增和递减操作符执行前，该值会被转换为数值，然后在执行递增递减。对象是先调用它们的valueOf()和（或）toString()方法，再转换得到的值。</li>
+<li>在对非数值应用一元加操作符时，该操作符会像Number()转型函数一样对这个值执行转换。如+’10’ === 10 //true</li>
+</ol>
+<h3 id="位操作符-amp-lt-lt-gt-gt-gt-gt-gt"><a href="#位操作符-amp-lt-lt-gt-gt-gt-gt-gt" class="headerlink" title="位操作符(~,&amp;,|,^,&lt;&lt;,&gt;&gt;,&gt;&gt;&gt;)"></a>位操作符(~,&amp;,|,^,&lt;&lt;,&gt;&gt;,&gt;&gt;&gt;)</h3><h3 id="布尔操作符-amp-amp"><a href="#布尔操作符-amp-amp" class="headerlink" title="布尔操作符(!,&amp;&amp;,||)"></a>布尔操作符(!,&amp;&amp;,||)</h3><ol>
+<li>逻辑非操作符首先会将操作数转换为布尔值然后再计算。参考前面的Boolean转换表</li>
+<li>逻辑与在有一个操作数不是布尔值情况下不一定返回布尔值，遵循下列规则：<ul>
+<li>如果第一个操作数是对象，则返回第二个操作数</li>
+<li>如果第二个操作数是对象，则只有在第一个操作数的求值结果为true    - 的情况下才返回该对象</li>
+<li>如果两个操作数都是对象，则返回第二个操作数</li>
+<li>如果有一个操作数是null，则返回null</li>
+<li>如果有一个操作数是NaN，则返回NaN</li>
+<li>如果有一个操作数是undefined，则返回undefined</li>
+</ul>
+</li>
+<li>逻辑或遵循规则<ul>
+<li>如果第一个操作数是对象，则返回第一个操作数</li>
+<li>如果第一个操作数是求值结果为false，则返回第二个操作数</li>
+<li>如果两个操作数都是对象，则返回第一个操作数</li>
+<li>如果两个操作数都是null，则返回null</li>
+<li>如果两个操作数都是NaN，则返回NaN</li>
+<li>如果两个操作数都是undefined，则返回undefined</li>
+</ul>
+</li>
+</ol>
+<h3 id="乘性操作符"><a href="#乘性操作符" class="headerlink" title="乘性操作符(*,/,%)"></a>乘性操作符(*,/,%)</h3><p>在操作数为非数值的情况下会执行自动的类型转换。如果参与乘性计算的某个操作数不是数值，后台会先使用Number()转型函数将其转换为数值。也就是说，空字符串将被当作0，布尔值true将被当作1。</p>
+<ol>
+<li><p>乘法</p>
+<ul>
+<li>如果操作数都是数值，执行常规的乘法计算，即两个正数或两个负数相乘的结果还是正数，而如果只有一个操作数有符号，那么结果就是负数。如果乘积超过了ECMAScript数值的表示范围，则返回Infinity或-Infinity；</li>
+<li>如果有一个操作数是NaN，则结果是NaN；</li>
+<li>如果是Infinity与0相乘，则结果是NaN；</li>
+<li>如果是Infinity与非0数值相乘，则结果是Infinity或-Infinity，取决于有符号操作数的符号；</li>
+<li>如果是Infinity与Infinity相乘，则结果是Infinity；</li>
+<li>如果有一个操作数不是数值，则在后台调用Number()将其转换为数值，然后再应用上面的 规则。</li>
+</ul>
+</li>
+<li><p>除法</p>
+<ul>
+<li>如果操作数都是数值，执行常规的除法计算，即两个正数或两个负数相除的结果还是正数，而如果只有一个操作数有符号，那么结果就是负数。如果商超过了ECMAScript数值的表示范围，则返回Infinity或-Infinity；</li>
+<li>如果有一个操作数是NaN，则结果是NaN；</li>
+<li>如果是Infinity被Infinity除，则结果是NaN；</li>
+<li>如果是零被零除，则结果是NaN；</li>
+<li>如果是非零的有限数被零除，则结果是Infinity或-Infinity，取决于有符号操作数的符号；</li>
+<li>如果是Infinity被任何非零数值除，则结果是Infinity或-Infinity，取决于有符号操作数的符号；</li>
+<li>如果有一个操作数不是数值，则在后台调用Number()将其转换为数值，然后再应用上面的 规则。</li>
+</ul>
+</li>
+<li><p>求模</p>
+<ul>
+<li>如果操作数都是数值，执行常规的除法计算，返回除得的余数；</li>
+<li>如果被除数是无穷大值而除数是有限大的数值，返回NaN；</li>
+<li>如果被除数是有限大的数值而除数是零，返回NaN；</li>
+<li>如果Infinity被Infinity除，返回NaN；</li>
+<li>如果被除数是有限大的数值而除数是无穷大值，返回被除数；</li>
+<li>如果被除数是零，返回零；</li>
+<li>如果有一个操作数不是数值，则在后台调用Number()将其转换为数值，然后再应用上面的 规则。</li>
+</ul>
+</li>
+</ol>
+<h3 id="加性操作符"><a href="#加性操作符" class="headerlink" title="加性操作符(+,-)"></a>加性操作符(+,-)</h3><ol>
+<li><p>加法</p>
+<ul>
+<li>如果有一个操作数是NaN，则结果是NaN；</li>
+<li>如果是Infinity加Infinity，则结果是Infinity；</li>
+<li>如果是-Infinity加-Infinity，则结果是-Infinity；</li>
+<li>如果是Infinity加-Infinity，则结果是NaN；</li>
+<li>如果是+0加+0，则结果是+0；</li>
+<li>如果是-0加-0，则结果是-0；</li>
+<li>如果是+0加-0，则结果是+0。</li>
+</ul>
+</li>
+<li><p>如果有一个操作数是字符串，那么就要应用如下规则：</p>
+<ul>
+<li>如果两个操作数都是字符串，则将第二个操作数与第一个操作数拼接起来；</li>
+<li>如果只有一个操作数是字符串，则将另一个操作数转换为字符串，然后再将两个字符串拼接 起来。<br>如果有一个操作数是对象、数值或布尔值，则调用它们的toString()方法取得相应的字符串值，然后再应用前面关于字符串的规则。对于undefined和null，则分别调用String()函数并取得字 符串”undefined”和”null”。</li>
+</ul>
+</li>
+<li><p>减法</p>
+<ul>
+<li>如果两个操作数都是数值，则执行常规的算术减法操作并返回结果；</li>
+<li>如果有一个操作数是NaN，则结果是NaN；</li>
+<li>如果是Infinity减Infinity，则结果是NaN；</li>
+<li>如果是-Infinity减-Infinity，则结果是NaN；</li>
+<li>如果是Infinity减-Infinity，则结果是Infinity；</li>
+<li>如果是-Infinity减Infinity，则结果是-Infinity；</li>
+<li>如果是+0减+0，则结果是+0；</li>
+<li>如果是+0减-0，则结果是-0；</li>
+<li>如果是-0减-0，则结果是+0；</li>
+<li>如果有一个操作数是字符串、布尔值、null或undefined，则先在后台调用Number()函数将其转换为数值，然后再根据前面的规则执行减法计算。如果转换的结果是NaN，则减法的结果就是NaN；</li>
+<li>如果有一个操作数是对象，则调用对象的valueOf()方法以取得表示该对象的数值。如果得到的值是NaN，则减法的结果就是NaN。如果对象没有valueOf()方法，则调用其toString()方法并将得到的字符串转换为数值。 </li>
+</ul>
+</li>
+</ol>
+<h3 id="关系操作符-gt-lt-gt-lt"><a href="#关系操作符-gt-lt-gt-lt" class="headerlink" title="关系操作符(&gt;,&lt;,&gt;=,&lt;=)"></a>关系操作符(&gt;,&lt;,&gt;=,&lt;=)</h3><ol>
+<li>对于字符串实际比较的是两个字符串中对应位置的每个字符的字符编码值  <ul>
+<li>如果两个操作数都是数值，则执行数值比较。</li>
+<li>如果两个操作数都是字符串，则比较两个字符串对应的字符编码值。</li>
+<li>如果一个操作数是数值，则将另一个操作数转换为一个数值，然后执行数值比较。</li>
+<li>如果一个操作数是对象，则调用这个对象的valueOf()方法，用得到的结果按照前面的规则执行比较。如果对象没有valueOf()方法，则调用toString()方法，并用得到的结果根据前面的规则执行比较。</li>
+<li>如果一个操作数是布尔值，则先将其转换为数值，然后再执行比较。</li>
+<li>任何操作数与NaN比较都将返回false</li>
+</ul>
+</li>
+</ol>
+<h3 id="相等操作符"><a href="#相等操作符" class="headerlink" title="相等操作符(=\==,!\==,==,!=)"></a>相等操作符(=\==,!\==,==,!=)</h3><ol>
+<li><p>相等和不相等——先转换再比较，全等和不全等——仅比较而不转换。</p>
+</li>
+<li><p>在转换不同的数据类型时，相等和不相等操作符遵循下列基本规则：</p>
+<ul>
+<li>如果有一个操作数是布尔值，则在比较相等性之前先将其转换为数值——false转换为0，而true转换为1；</li>
+<li>如果一个操作数是字符串，另一个操作数是数值，在比较相等性之前先将字符串转换为数值；</li>
+<li>如果一个操作数是对象，另一个操作数不是，则调用对象的valueOf()方法，用得到的基本类型值按照前面的规则进行比较； 这两个操作符在进行比较时则要遵循下列规则。<br>null和undefined是相等的。</li>
+<li>要比较相等性之前，不能将null和undefined转换成其他任何值。</li>
+<li>如果有一个操作数是NaN，则相等操作符返回false，而不相等操作符返回true。重要提示：即使两个操作数都是NaN，相等操作符也返回false；因为按照规则，NaN不等于NaN。</li>
+<li>如果两个操作数都是对象，则比较它们是不是同一个对象。如果两个操作数都指向同一个对象，则相等操作符返回true；否则，返回false。</li>
+</ul>
+</li>
+</ol>
+<h3 id="条件操作符-boolean-expression-true-value-false-value"><a href="#条件操作符-boolean-expression-true-value-false-value" class="headerlink" title="条件操作符(boolean_expression?true_value:false_value)"></a>条件操作符(boolean_expression?true_value:false_value)</h3><h3 id="逗号操作符"><a href="#逗号操作符" class="headerlink" title="逗号操作符(,)"></a>逗号操作符(,)</h3><h3 id="赋值操作符-以及-、-等复合赋值运算符"><a href="#赋值操作符-以及-、-等复合赋值运算符" class="headerlink" title="赋值操作符(=以及*=、+=等复合赋值运算符)"></a>赋值操作符(=以及*=、+=等复合赋值运算符)</h3><h3 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h3><ol>
+<li>解构只能用于数组或对象。其他原始类型的值都可以转为相应的对象，但是，undefined和null不能转为对象，因此报错。</li>
+<li>如果解构不成功，变量的值就等于undefined。</li>
+<li>不完全解构，即等号左边的模式，只匹配一部分的等号右边的数组。这种情况下，解构依然可以成功。</li>
+<li><p>解构赋值允许指定默认值。</p>
+<blockquote>
+<p>注意，ES6内部使用严格相等运算符（===），判断一个位置是否有值。所以，如果一个数组成员不严格等于undefined，默认值是不会生效的。</p>
+</blockquote>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var [x = 1] = [undefined];// x = 1</div><div class="line">var [x = 1] = [null]; //x = null</div></pre></td></tr></table></figure>
+</li>
+<li><p>只要某种数据结构具有Iterable接口，都可以采用数组形式的解构赋值。</p>
+</li>
+<li><p>解构不仅可以用于数组，还可以用于对象。而对象的属性没有次序，变量必须与属性同名，才能取到正确的值。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var &#123; foo: baz &#125; = &#123; foo: &quot;aaa&quot;, bar: &quot;bbb&quot; &#125;; //baz = &quot;aaa&quot;</div><div class="line">let &#123; log, sin, cos &#125; = Math;</div><div class="line">const [a, b, c, d, e] = &apos;hello&apos;;//a = &quot;h&quot;, b = &quot;e&quot;, c = &quot;l&quot;, d = &quot;l&quot;, e = &quot;o&quot;</div><div class="line">let &#123;length : len&#125; = &apos;hello&apos;; //len = 5</div></pre></td></tr></table></figure>
+</li>
+<li><p>函数的参数也可以使用解构。</p>
+</li>
+<li><p>函数参数的解构也可以使用默认值。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function move(&#123;x = 0, y = 0&#125; = &#123;&#125;) &#123;</div><div class="line">  return [x, y];</div><div class="line">&#125;</div><div class="line">move(&#123;x: 3, y: 8&#125;); // [3, 8]</div><div class="line">move(&#123;x: 3&#125;); // [3, 0]</div><div class="line">move(&#123;&#125;); // [0, 0]</div><div class="line">move(); // [0, 0]</div></pre></td></tr></table></figure>
+<p> <strong>注意，指定函数参数的默认值时，不能采用下面的写法。</strong><br> 会得到与前一种写法不同的结果。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">move</span>(<span class="params">&#123;x, y&#125; = &#123; x: <span class="number">0</span>, y: <span class="number">0</span> &#125;</span>) </span>&#123;</div><div class="line"> <span class="keyword">return</span> [x, y];</div><div class="line">&#125;</div><div class="line">move(&#123;<span class="attr">x</span>: <span class="number">3</span>, <span class="attr">y</span>: <span class="number">8</span>&#125;); <span class="comment">// [3, 8]</span></div><div class="line">move(&#123;<span class="attr">x</span>: <span class="number">3</span>&#125;); <span class="comment">// [3, undefined]</span></div><div class="line">move(&#123;&#125;); <span class="comment">// [undefined, undefined]</span></div><div class="line">move(); <span class="comment">// [0, 0]</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>用途</p>
+<ul>
+<li><p>交换变量的值</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[x, y] = [y, x];</div></pre></td></tr></table></figure>
+</li>
+<li><p>从函数返回多个值</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 返回一个数组</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">example</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> [a, b, c] = example();</div><div class="line"><span class="comment">// 返回一个对象</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">example</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    foo: <span class="number">1</span>,</div><div class="line">    bar: <span class="number">2</span></div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> &#123; foo, bar &#125; = example();</div></pre></td></tr></table></figure>
+</li>
+<li><p>函数参数的定义<br>解构赋值可以方便地将一组参数与变量名对应起来。</p>
+</li>
+<li>提取JSON数据</li>
+<li>函数参数的默认值</li>
+<li><p>遍历Map结构</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var map = new Map();</div><div class="line">map.set(&apos;first&apos;, &apos;hello&apos;);</div><div class="line">map.set(&apos;second&apos;, &apos;world&apos;);</div><div class="line"></div><div class="line">for (let [key, value] of map) &#123;</div><div class="line">  console.log(key + &quot; is &quot; + value);</div><div class="line">&#125;</div><div class="line">// first is hello</div><div class="line">// second is world</div><div class="line"></div><div class="line">// 获取键名</div><div class="line">for (let [key] of map) &#123;</div><div class="line">  // ...</div><div class="line">&#125;</div><div class="line">// 获取键值</div><div class="line">for (let [,value] of map) &#123;</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>输入模块的指定方法<br>加载模块时，往往需要指定输入那些方法。解构赋值使得输入语句非常清晰。</p>
+</li>
+</ul>
+</li>
+<li><p>将一个已经声明的变量用于解构赋值，必须非常小心。因为JavaScript引擎会将{x}理解成一个代码块，从而发生语法错误。只有不将大括号写在行首，避免JavaScript将其解释为代码块，才能解决这个问题。    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 错误的写法</div><div class="line">let x;</div><div class="line">&#123;x&#125; = &#123;x: 1&#125;;</div><div class="line">// 正确的写法</div><div class="line">(&#123;x&#125; = &#123;x: 1&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果模式中出现圆括号怎么处理。ES6的规则是，只要有可能导致解构的歧义，就不得使用圆括号。</p>
+</li>
+</ol>
+<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><ol>
+<li>break和 continue 语句都可以与 label 语句联合使用，从而返回代码中特定的位置。这种联合使用的情况多发生在循环嵌套的情况下</li>
+<li>switch语句在比较值时使用的是全等操作符，因此不会发生类型转换（例如，字符串”10”不等于数值10）。</li>
+<li>可以在switch语句中使用任何数据类型（在很多其他语言中只能使用数值），无论是字符串，还是对象都没有问题。其次，每个case的值不一定是常量，可以是变量，甚至是表达式。</li>
+</ol>
+<h3 id="for-in"><a href="#for-in" class="headerlink" title="for-in"></a>for-in</h3><ol>
+<li><strong>ECMAScript对象的属性没有顺序。因此，通过 for-in 循环输出的属性名的顺序是不可预测的.</strong></li>
+<li>for-in语句是一种精准的迭代语句，可以用来枚举对象的属性。</li>
+<li>建议在使用for-in循环之前，先检测确认该对象的值不是null或undefined。</li>
+</ol>
+<h3 id="with"><a href="#with" class="headerlink" title="with"></a>with</h3><p>严格模式下无效</p>
+<h3 id="for-of"><a href="#for-of" class="headerlink" title="for-of"></a>for-of</h3><ol>
+<li>ES6提供for…of循环，允许遍历获得键值。</li>
+<li>一个数据结构只要部署了Symbol.iterator方法，就被视为具有Iterable接口，就可以用for…of循环遍历它的成员。也就是说，for…of循环内部调用的是数据结构的Symbol.iterator方法。</li>
+<li>for…of循环可以使用的范围包括数组、Set和Map结构及其entries,values,keys方法返回的对象、某些类似数组的对象（比如arguments对象、DOM NodeList对象）、后文的Generator对象，以及字符串。</li>
+<li>遍历无iterator接口的类数组时, 使用Array.from方法将其转为数组。</li>
+<li>遍历对象时, Object.keys方法将对象的键名生成一个数组，然后遍历这个数组。</li>
+<li>与其他遍历方法的比较<ul>
+<li>for循环比较麻烦</li>
+<li>forEach无法调处循环</li>
+<li>for…in循环有几个缺点。<ol>
+<li>数组的键名是数字，但是for…in循环是以字符串作为键名“0”、“1”、“2”等等。</li>
+<li>for…in循环不仅遍历数字键名，还会遍历手动添加的其他键，甚至包括原型链上的键。</li>
+<li>某些情况下，for…in循环会以任意顺序遍历键名。</li>
+</ol>
+</li>
+<li>for…of循环相比上面几种做法，有一些显著的优点。<ol>
+<li>有着同for…in一样的简洁语法，但是没有for…in那些缺点。</li>
+<li>不同用于forEach方法，它可以与break、continue和return配合使用。</li>
+<li>提供了遍历所有数据结构的统一操作接口。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ol>
+<li>return语句也可以不带有任何返回值。在这种情况下，函数在停止执行后将返回undefined值。</li>
+<li>arguments对象只是与数组类似（它并不是Array的实例）</li>
+<li>arguments对象为其内部属性以及函数形式参数创建getter和setter函数。因此改变形参的值会影响arguments对象的值，但是严格模式不允许创建getter和setter方法。</li>
+<li>严格模式下: <ul>
+<li>如何使用 arguments 对象做出了一些限制</li>
+<li>不能把函数或参数命名为eval或arguments；</li>
+</ul>
+</li>
+<li>没有重载<br>没有函数签名，真正的重载是不可能做到的。 如果在ECMAScript中定义了两个名字相同的函数，则该名字只属于后定义的函数。</li>
+</ol>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><ol>
+<li>使用注意点<ul>
+<li>函数体内的this对象，绑定定义时所在的对象，而不是使用时所在的对象。</li>
+<li>不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。</li>
+<li>不可以使用arguments对象，该对象在函数体内不存在。</li>
+<li>不可以使用yield命令，因此箭头函数不能用作Generator函数。</li>
+</ul>
+</li>
+</ol>
+<h2 id="Generator-函数"><a href="#Generator-函数" class="headerlink" title="Generator 函数"></a>Generator 函数</h2><h3 id="基本概念-1"><a href="#基本概念-1" class="headerlink" title="基本概念"></a>基本概念</h3><ol>
+<li>Generator函数是ES6提供的一种异步编程解决方案，语法行为与传统函数完全不同。</li>
+<li>Generator函数有多种理解角度。从语法上，首先可以把它理解成==一个函数的内部状态的遍历器==（也就是说，Generator函数是一个状态机）。它每调用一次，就进入下一个内部状态。Generator函数可以控制内部状态的变化，依次遍历这些状态。</li>
+<li><p>有两个特征。一是，function命令与函数名之间有一个星号；二是，函数体内部使用yield语句，定义遍历器的每个成员，即不同的内部状态（yield语句在英语里的意思就是“产出”）。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function* helloWorldGenerator() &#123;</div><div class="line">  yield &apos;hello&apos;;</div><div class="line">  yield &apos;world&apos;;</div><div class="line">  return &apos;ending&apos;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var hw = helloWorldGenerator();</div><div class="line"></div><div class="line">hw.next() // &#123; value: &apos;hello&apos;, done: false &#125;</div><div class="line">hw.next() // &#123; value: &apos;world&apos;, done: false &#125;</div><div class="line">hw.next() // &#123; value: &apos;ending&apos;, done: true &#125;</div><div class="line">hw.next() // &#123; value: undefined, done: true &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>调用该函数后, 返回一个Iterator对象（该对象同时实现了Iterable接口，并且调用该对象的Symbol.iterator方法返回该对象自身）。</p>
+<p> 调用Iterator对象的next方法，使得指针移向下一个状态。每次调用next方法，内部指针就从函数头部或上一次停下来的地方开始执行，直到遇到下一个yield语句（或return语句）为止。换言之，Generator函数是分段执行的，yield命令是暂停执行的标记，而next方法可以恢复执行。</p>
+<p> 总结一下，调用Generator函数，返回一个实现了Iterator接口的对象，用来操作内部指针。以后，每次调用Iterator对象的next方法，就会返回一个实现了IteratorResult接口的对象。value属性表示当前的内部状态的值，是yield语句后面那个表达式的值；done属性是一个布尔值，表示是否遍历结束。</p>
+</li>
+</ol>
+<h3 id="yield语句"><a href="#yield语句" class="headerlink" title="yield语句"></a>yield语句</h3><p>Iterator对象next方法的运行逻辑如下。</p>
+<ol>
+<li>遇到yield语句，就暂停执行后面的操作，并将紧跟在yield后面的那个表达式的值，作为返回的对象的value属性值。</li>
+<li>下一次调用next方法时，再继续往下执行，直到遇到下一个yield语句。</li>
+<li>如果没有再遇到新的yield语句，就一直运行到函数结束，直到return语句为止，并将return语句后面的表达式的值，作为返回的对象的value属性值。</li>
+<li>如果该函数没有return语句，则返回的对象的value属性值为undefined。</li>
+</ol>
+<p>yield语句不能用在普通函数中，否则会报错。</p>
+<h3 id="与Iterator的关系"><a href="#与Iterator的关系" class="headerlink" title="与Iterator的关系"></a>与Iterator的关系</h3><p>调用Generator函数返回一个Iterator对象。这里的Iterator对象也实现了Iterable接口，Symbol.iterator方法执行后，返回自身。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function* gen()&#123;</div><div class="line"> // some code</div><div class="line">&#125;</div><div class="line">    </div><div class="line">var i = gen();</div><div class="line">    </div><div class="line">i[Symbol.iterator]() === i // true</div></pre></td></tr></table></figure>
+<h3 id="next方法的参数"><a href="#next方法的参数" class="headerlink" title="next方法的参数"></a>next方法的参数</h3><ol>
+<li><p>yield语句本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield语句的返回值。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function* foo(x) &#123;</div><div class="line">  var y = 2 * (yield (x + 1));</div><div class="line">  var z = yield (y / 3);</div><div class="line">  return (x + y + z);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var it = foo(5);</div><div class="line"></div><div class="line">it.next() // &#123; value:6, done:false &#125;</div><div class="line">it.next(12) // &#123; value:8, done:false &#125;</div><div class="line">it.next(13) // &#123; value:42, done:true &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li>Generator函数从暂停状态到恢复运行，它的上下文状态（context）是不变的。通过next方法的参数，就有办法在Generator函数开始运行之后，继续向函数体内部注入值。也就是说，可以在Generator函数运行的不同阶段，从外部向内部注入不同的值，从而调整函数行为。</li>
+<li>由于next方法的参数表示上一个yield语句的返回值，所以第一次使用next方法时，不能带有参数。V8引擎直接忽略第一次使用next方法时的参数，只有从第二次使用next方法开始，参数才是有效的。</li>
+</ol>
+<h3 id="for…of循环"><a href="#for…of循环" class="headerlink" title="for…of循环"></a>for…of循环</h3><p>for…of循环可以自动遍历Generator函数，且此时不再需要调用next方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line"> yield 1;</div><div class="line"> yield 2;</div><div class="line"> yield 3;</div><div class="line"> yield 4;</div><div class="line"> yield 5;</div><div class="line"> return 6;</div><div class="line">&#125;</div><div class="line">    </div><div class="line">for (let v of foo()) &#123;</div><div class="line"> console.log(v);</div><div class="line">&#125;</div><div class="line">// 1 2 3 4 5</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这里需要注意，一旦next方法的返回对象的done属性为true，for…of循环就会中止，且不包含该返回对象，所以上面代码的return语句返回的6，不包括在for…of循环之中。</p>
+</blockquote>
+<h3 id="throw方法"><a href="#throw方法" class="headerlink" title="throw方法"></a>throw方法</h3><p>Generator函数还有一个特点，它可以在函数体外抛出错误，然后在函数体内捕获。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var g = function* () &#123;</div><div class="line">  while (true) &#123;</div><div class="line">    try &#123;</div><div class="line">      yield;</div><div class="line">    &#125; catch (e) &#123;</div><div class="line">      if (e != &apos;a&apos;) throw e;</div><div class="line">      console.log(&apos;内部捕获&apos;, e);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var i = g();</div><div class="line">i.next();</div><div class="line"></div><div class="line">try &#123;</div><div class="line">  i.throw(&apos;a&apos;);</div><div class="line">  i.throw(&apos;b&apos;);</div><div class="line">&#125; catch (e) &#123;</div><div class="line">  console.log(&apos;外部捕获&apos;, e);</div><div class="line">&#125;</div><div class="line">// 内部捕获 a</div><div class="line">// 外部捕获 b</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>迭代器i连续抛出两个错误。第一个错误被Generator函数体内的catch捕获，然后Generator函数执行完成，于是第二个错误被函数体外的catch捕获。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var gen = function* gen()&#123;</div><div class="line">  yield console.log(&apos;hello&apos;);</div><div class="line">  yield console.log(&apos;world&apos;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var g = gen();</div><div class="line">g.next();</div><div class="line"></div><div class="line">try &#123;</div><div class="line">  g.throw(); // 会终止遍历器</div><div class="line">&#125; catch (e) &#123;</div><div class="line">  g.next();</div><div class="line">&#125;</div><div class="line">// hello</div></pre></td></tr></table></figure>
+<blockquote>
+<p>上面代码只输出hello就结束了，因为第二次调用next方法时，遍历器状态已经变成终止了。但是，如果使用throw命令抛出错误，不会影响遍历器状态。</p>
+</blockquote>
+<p>这种函数体内捕获错误的机制，大大方便了对错误的处理。如果使用回调函数的写法，想要捕获多个错误，就不得不为每个函数写一个错误处理语句。</p>
+<p>使用Generator函数可以大大简化错误捕获。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function* g()&#123;</div><div class="line">  try &#123;</div><div class="line">    var a = yield foo(&apos;a&apos;);</div><div class="line">    var b = yield foo(&apos;b&apos;);</div><div class="line">    var c = yield foo(&apos;c&apos;);</div><div class="line">  &#125; catch (e) &#123;</div><div class="line">    console.log(e);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  console.log(a, b, c);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>反过来，Generator函数内抛出的错误，也可以被函数体外的catch捕获。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function *foo() &#123;</div><div class="line">  var x = yield 3;</div><div class="line">  var y = x.toUpperCase();</div><div class="line">  yield y;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var it = foo();</div><div class="line"></div><div class="line">it.next(); // &#123; value:3, done:false &#125;</div><div class="line"></div><div class="line">try &#123;</div><div class="line">  it.next(42);</div><div class="line">&#125; catch (err) &#123;</div><div class="line">  console.log(err);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>一旦Generator执行过程中抛出错误，就不会再执行下去了。如果此后还调用next方法，将返回一个value属性等于undefined、done属性等于true的对象，即JavaScript引擎认为这个Generator已经运行结束了。</strong></p>
+<h3 id="yield-语句"><a href="#yield-语句" class="headerlink" title="yield*语句"></a>yield*语句</h3><p>如果yield命令后面跟的是一个Iterable对象，需要在yield命令后面加上星号，表明它返回的是一个Iterable对象。这被称为yield*语句。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">let delegatedIterator = (function* () &#123;</div><div class="line">  yield &apos;Hello!&apos;;</div><div class="line">  yield &apos;Bye!&apos;;</div><div class="line">&#125;());</div><div class="line"></div><div class="line">let delegatingIterator = (function* () &#123;</div><div class="line">  yield &apos;Greetings!&apos;;</div><div class="line">  yield* delegatedIterator;</div><div class="line">  yield &apos;Ok, bye.&apos;;</div><div class="line">&#125;());</div><div class="line"></div><div class="line">for(let value of delegatingIterator) &#123;</div><div class="line">  console.log(value);</div><div class="line">&#125;</div><div class="line">// &quot;Greetings!</div><div class="line">// &quot;Hello!&quot;</div><div class="line">// &quot;Bye!&quot;</div><div class="line">// &quot;Ok, bye.&quot;</div></pre></td></tr></table></figure>
+<ol>
+<li><strong>yield*语句等同于在Generator函数内部，部署一个for…of循环。</strong></li>
+<li>如果yield*后面跟着一个数组，由于数组原生支持Iterable对象，因此就会遍历数组成员。</li>
+<li>yield命令后面如果不加星号，返回的是整个值，加了星号就表示返回的是Iterable对象。</li>
+<li>yield*命令可以很方便地取出嵌套数组的所有成员。(遍历二叉树等)</li>
+</ol>
+<h3 id="作为对象属性的Generator函数"><a href="#作为对象属性的Generator函数" class="headerlink" title="作为对象属性的Generator函数"></a>作为对象属性的Generator函数</h3><p>如果一个对象的属性是Generator函数，可以简写成下面的形式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">let obj = &#123;</div><div class="line">  * myGeneratorMethod() &#123;</div><div class="line">    ···</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">let obj = &#123;</div><div class="line">  myGeneratorMethod: function* () &#123;</div><div class="line">    // ···</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="构造函数是Generator函数"><a href="#构造函数是Generator函数" class="headerlink" title="构造函数是Generator函数"></a>构造函数是Generator函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function* F()&#123;</div><div class="line">  yield this.x = 2;</div><div class="line">  yield this.y = 3;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&apos;next&apos; in (new F()) // true</div><div class="line"></div><div class="line">//可以生成一个空对象，使用bind方法绑定F内部的this。这样，构造函数调用以后，这个空对象就是F的实例对象了。</div><div class="line">var obj = &#123;&#125;;</div><div class="line">var f = F.bind(obj)();</div><div class="line"></div><div class="line">f.next();</div><div class="line">f.next();</div><div class="line">f.next();</div><div class="line"></div><div class="line">console.log(obj); // &#123; x: 2, y: 3 &#125;</div></pre></td></tr></table></figure>
+<h3 id="Generator函数推导"><a href="#Generator函数推导" class="headerlink" title="Generator函数推导"></a>Generator函数推导</h3><p>ES7在数组推导的基础上，提出了Generator函数推导（Generator comprehension）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">let generator = function* () &#123;</div><div class="line">  for (let i = 0; i &lt; 6; i++) &#123;</div><div class="line">    yield i;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let squared = ( for (n of generator()) n * n );</div><div class="line">// 等同于</div><div class="line">// let squared = Array.from(generator()).map(n =&gt; n * n);</div><div class="line"></div><div class="line">console.log(...squared); // 0 1 4 9 16 25</div></pre></td></tr></table></figure>
+<p>“推导”这种语法结构，不仅可以用于数组，ES7将其推广到了Generator函数。for…of循环会自动调用Iterator对象的next方法，将返回值的value属性作为数组的一个成员。</p>
+<p>Generator函数推导是对数组结构的一种模拟，它的最大优点是惰性求值，即直到真正用到时才会求值，这样可以保证效率。请看下面的例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">let bigArray = new Array(100000);</div><div class="line">for (let i = 0; i &lt; 100000; i++) &#123;</div><div class="line">  bigArray[i] = i;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let first = bigArray.map(n =&gt; n * n)[0];</div><div class="line">console.log(first);</div></pre></td></tr></table></figure>
+<p>上面例子遍历一个大数组，但是在真正遍历之前，这个数组已经生成了，占用了系统资源。如果改用Generator函数推导，就能避免这一点。下面代码只在用到时，才会生成一个大数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">let bigGenerator = function* () &#123;</div><div class="line">  for (let i = 0; i &lt; 100000; i++) &#123;</div><div class="line">    yield i;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">let squared = ( for (n of bigGenerator()) n * n );</div><div class="line"></div><div class="line">console.log(squared.next());</div></pre></td></tr></table></figure>
+<h3 id="Generator与状态机"><a href="#Generator与状态机" class="headerlink" title="Generator与状态机"></a>Generator与状态机</h3><p>Generator是实现状态机的最佳结构。比如，下面的clock函数就是一个状态机。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var ticking = true;</div><div class="line">var clock = function() &#123;</div><div class="line">  if (ticking)</div><div class="line">    console.log(&apos;Tick!&apos;);</div><div class="line">  else</div><div class="line">    console.log(&apos;Tock!&apos;);</div><div class="line">  ticking = !ticking;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面代码的clock函数一共有两种状态（Tick和Tock），每运行一次，就改变一次状态。这个函数如果用Generator实现，就是下面这样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var clock = function*(_) &#123;</div><div class="line">  while (true) &#123;</div><div class="line">    yield _;</div><div class="line">    console.log(&apos;Tick!&apos;);</div><div class="line">    yield _;</div><div class="line">    console.log(&apos;Tock!&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>上面的Generator实现与ES5实现对比，可以看到少了用来保存状态的外部变量ticking，这样就更简洁，更安全（状态不会被非法篡改）、更符合函数式编程的思想，在写法上也更优雅。Generator之所以可以不用外部变量保存状态，是因为它本身就包含了一个状态信息，即目前是否处于暂停态。</p>
+<h3 id="Generator与协程"><a href="#Generator与协程" class="headerlink" title="Generator与协程"></a>Generator与协程</h3><p>协程（coroutine）是一种程序运行的方式，可以理解成“协作的线程”或“协作的函数”。协程既可以用单线程实现，也可以用多线程实现。前者是一种特殊的子例程，后者是一种特殊的线程。</p>
+<ol>
+<li>协程与子例程的差异</li>
+</ol>
+<p>传统的“子例程”（subroutine）采用堆栈式“后进先出”的执行方式，只有当调用的子函数完全执行完毕，才会结束执行父函数。协程与其不同，多个线程（单线程情况下，即多个函数）可以并行执行，但是只有一个线程（或函数）处于正在运行的状态，其他线程（或函数）都处于暂停态（suspended），线程（或函数）之间可以交换执行权。也就是说，一个线程（或函数）执行到一半，可以暂停执行，将执行权交给另一个线程（或函数），等到稍后收回执行权的时候，再恢复执行。这种可以并行执行、交换执行权的线程（或函数），就称为协程。</p>
+<p>从实现上看，在内存中，子例程只使用一个栈（stack），而协程是同时存在多个栈，但只有一个栈是在运行状态，也就是说，协程是以多占用内存为代价，实现多任务的并行。</p>
+<ol>
+<li>协程与普通线程的差异</li>
+</ol>
+<p>不难看出，协程适合用于多任务运行的环境。在这个意义上，它与普通的线程很相似，都有自己的执行上下文、可以分享全局变量。它们的不同之处在于，同一时间可以有多个线程处于运行状态，但是运行的协程只能有一个，其他协程都处于暂停状态。此外，普通的线程是抢先式的，到底哪个线程优先得到资源，必须由运行环境决定，但是协程是合作式的，执行权由协程自己分配。</p>
+<p>由于ECMAScript是单线程语言，只能保持一个调用栈。引入协程以后，每个任务可以保持自己的调用栈。这样做的最大好处，就是抛出错误的时候，可以找到原始的调用栈。不至于像异步操作的回调函数那样，一旦出错，原始的调用栈早就结束。</p>
+<p>Generator函数是ECMAScript 6对协程的实现，但属于不完全实现。Generator函数被称为“半协程”（semi-coroutine），意思是只有Generator函数的调用者，才能将程序的执行权还给Generator函数。如果是完全执行的协程，任何函数都可以让暂停的协程继续执行。</p>
+<p>如果将Generator函数当作协程，完全可以将多个需要互相协作的任务写成Generator函数，它们之间使用yield语句交换控制权。</p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ol>
+<li>异步操作的同步化表达</li>
+</ol>
+<p>Generator函数的暂停执行的效果，意味着可以把异步操作写在yield语句里面，等到调用next方法时再往后执行。这实际上等同于不需要写回调函数了，因为异步操作的后续操作可以放在yield语句下面，反正要等到调用next方法时再执行。所以，Generator函数的一个重要实际意义就是用来处理异步操作，改写回调函数。</p>
+<ol>
+<li>控制流管理</li>
+</ol>
+<p>如果有一个多步操作非常耗时，采用回调函数，可能会写成下面这样。</p>
+<ol>
+<li>部署Iterable接口</li>
+</ol>
+<p>利用Generator函数，可以在任意对象上部署Iterable接口。</p>
+<ol>
+<li>作为数据结构</li>
+</ol>
+<p>Generator可以看作是数据结构，更确切地说，可以看作是一个数组结构，因为Generator函数可以返回一系列的值，这意味着它可以对任意表达式，提供类似数组的接口。</p>
+<h2 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h2><p>尾调用（Tail Call）是函数式编程的一个重要概念，就是指某个函数的最后一步是调用另一个函数。</p>
+<p>我们知道，函数调用会在内存形成一个“调用记录”，又称“调用帧”（call frame），保存调用位置和内部变量等信息。如果在函数A的内部调用函数B，那么在A的调用帧上方，还会形成一个B的调用帧。等到B运行结束，将结果返回到A，B的调用帧才会消失。如果函数B内部还调用函数C，那就还有一个C的调用帧，以此类推。所有的调用帧，就形成一个“调用栈”（call stack）。</p>
+<p>尾调用由于是函数的最后一步操作，所以不需要保留外层函数的调用帧，因为调用位置、内部变量等信息都不会再用到了，只要直接用内层函数的调用帧，取代外层函数的调用帧就可以了。</p>
+<p>“尾调用优化”（Tail call optimization），即只保留内层函数的调用帧。如果所有函数都是尾调用，那么完全可以做到每次执行时，调用帧只有一项，这将大大节省内存。这就是“尾调用优化”的意义。</p>
+<p>注意，只有不再用到外层函数的内部变量，内层函数的调用帧才会取代外层函数的调用帧，否则就无法进行“尾调用优化”。</p>
+<p>函数调用自身，称为递归。如果尾调用自身，就称为尾递归。</p>
+<p>递归非常耗费内存，因为需要同时保存成千上百个调用帧，很容易发生“栈溢出”错误（stack overflow）。但对于尾递归来说，由于只存在一个调用帧，所以永远不会发生“栈溢出”错误。</p>
+<p>尾递归的实现，往往需要改写递归函数，确保最后一步只调用自身。做到这一点的方法，就是把所有用到的内部变量改写成函数的参数。</p>
+<p>函数式编程有一个概念，叫做柯里化（currying），意思是将多参数的函数转换成单参数的形式。这里也可以使用柯里化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function factorial(n, total = 1) &#123;</div><div class="line">  if (n === 1) return total;</div><div class="line">  return factorial(n - 1, n * total);</div><div class="line">&#125;</div><div class="line"></div><div class="line">factorial(5) // 120</div></pre></td></tr></table></figure>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><h3 id="export命令"><a href="#export命令" class="headerlink" title="export命令"></a>export命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// profile.js</div><div class="line">export var name = &apos;Michael&apos;;</div><div class="line">export var year = 1958;</div><div class="line"></div><div class="line">var name = &apos;Michael&apos;;</div><div class="line">var year = 1958;</div><div class="line"></div><div class="line">export &#123;name, year&#125;;</div></pre></td></tr></table></figure>
+<h3 id="import命令"><a href="#import命令" class="headerlink" title="import命令"></a>import命令</h3><ol>
+<li>使用export命令定义了模块的对外接口以后，其他JS文件就可以通过import命令加载这个模块（文件）。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// main.js</div><div class="line">import &#123;name, year&#125; from &apos;./profile&apos;;</div><div class="line"></div><div class="line">function setHeader(element) &#123;</div><div class="line">  element.textContent = name;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>如果想为输入的变量重新取一个名字，import语句中要使用as关键字，将输入的变量重命名。</li>
+<li>如果在一个模块之中，先输入后输出同一个模块，import语句可以与export语句写在一起。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">export &#123; es6 as default &#125; from &apos;./someModule&apos;;</div><div class="line"></div><div class="line">// 等同于</div><div class="line">import &#123; es6 &#125; from &apos;./someModule&apos;;</div><div class="line">export default es6;</div></pre></td></tr></table></figure>
+<h3 id="模块的整体输入"><a href="#模块的整体输入" class="headerlink" title="模块的整体输入"></a>模块的整体输入</h3><p>使用*号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// main.js</div><div class="line">import * as circle from &apos;circle&apos;;</div><div class="line"></div><div class="line">console.log(&quot;圆面积：&quot; + circle.area(4));</div><div class="line">console.log(&quot;圆周长：&quot; + circle.circumference(14));</div></pre></td></tr></table></figure>
+<h3 id="module命令"><a href="#module命令" class="headerlink" title="module命令"></a>module命令</h3><p>module命令可以取代import语句，达到整体输入模块的作用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// main.js</div><div class="line">module circle from &apos;circle&apos;;</div><div class="line"></div><div class="line">console.log(&quot;圆面积：&quot; + circle.area(4));</div><div class="line">console.log(&quot;圆周长：&quot; + circle.circumference(14));</div></pre></td></tr></table></figure>
+<h3 id="export-default命令"><a href="#export-default命令" class="headerlink" title="export default命令"></a>export default命令</h3><ol>
+<li>export default命令，为模块指定默认输出。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// export-default.js</div><div class="line">export default function () &#123;</div><div class="line">  console.log(&apos;foo&apos;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// import-default.js</div><div class="line">import customName from &apos;./export-default&apos;;</div><div class="line">customName(); // &apos;foo&apos;</div></pre></td></tr></table></figure>
+<p><strong>需要注意的是，这时import命令后面，不使用大括号。</strong></p>
+<ol>
+<li>export default命令用于指定模块的默认输出。显然，一个模块只能有一个默认输出，因此export deault命令只能使用一次。所以，import命令后面才不用加大括号，因为只可能对应一个方法。</li>
+<li>本质上，export default就是输出一个叫做default的变量或方法，然后系统允许你为它取任意名字。</li>
+</ol>
+<h3 id="模块的继承"><a href="#模块的继承" class="headerlink" title="模块的继承"></a>模块的继承</h3><p>模块之间也可以继承。</p>
+<p>假设有一个circleplus模块，继承了circle模块。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// circleplus.js</div><div class="line">export * from &apos;circle&apos;;</div><div class="line">export var e = 2.71828182846;</div><div class="line">export default function(x) &#123;</div><div class="line">    return Math.exp(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><h3 id="try-catch-语句"><a href="#try-catch-语句" class="headerlink" title="try-catch 语句"></a>try-catch 语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">try&#123;</div><div class="line">// 可能会导致错误的代码</div><div class="line">&#125; catch(error)&#123;</div><div class="line">// 在错误发生时怎么处理</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>内置使用内置的Error对象具有两个标准属性name和message</p>
+<ul>
+<li>name：错误名称</li>
+<li>message：错误提示信息</li>
+<li>stack：错误的堆栈（非标准属性，但是大多数平台支持）</li>
+</ul>
+<h3 id="finally-子句"><a href="#finally-子句" class="headerlink" title="finally 子句"></a>finally 子句</h3><p>finally都是可选的，但 finally 子句一经使用,其代码无论如何都会执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function fn()&#123;</div><div class="line">  try &#123;</div><div class="line">    var x = 1;</div><div class="line">    throw new Error(&apos;error&apos;);</div><div class="line">  &#125; catch (e) &#123;</div><div class="line">    console.log(&apos;x=&apos; + x);</div><div class="line">    return x;</div><div class="line">  &#125; finally &#123;</div><div class="line">    x = 2;</div><div class="line">    console.log(&apos;x=&apos; + x);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面代码说明，即使有return语句在前，finally代码块依然会得到执行，且在其执行完毕后，并不影响return语句要返回的值。</p>
+<h3 id="错误类型"><a href="#错误类型" class="headerlink" title="错误类型"></a>错误类型</h3><ol>
+<li>EvalError<br> 如果没有把 eval() 当成函数调用,就会抛出EvalError错误。一些浏览器不会正确抛出这个错误。</li>
+<li>RangeError<br> 当一个值超出有效范围时发生的错误。</li>
+<li>ReferenceError<br> 引用一个不存在的变量时发生的错误</li>
+<li>SyntaxError<br> 解析代码时发生的语法错误。</li>
+<li>TypeError<br> 变量或参数不是预期类型时发生的错误。</li>
+<li>URIError<br> URI相关函数的参数不正确时抛出的错误</li>
+</ol>
+<h3 id="抛出错误"><a href="#抛出错误" class="headerlink" title="抛出错误"></a>抛出错误</h3><ol>
+<li>与 try-catch 语句相配的还有一个 throw 操作符,用于随时抛出自定义错误。抛出错误时,必须要给 throw 操作符指定一个值,这个值是什么类型,没有要求。</li>
+<li>另外,利用原型链还可以通过继承 Error 来创建自定义错误类型</li>
+</ol>
+<h3 id="错误-error-事件"><a href="#错误-error-事件" class="headerlink" title="错误( error )事件"></a>错误( error )事件</h3><ol>
+<li>任何没有通过 try-catch 处理的错误都会触发 window 对象的 error 事件</li>
+<li>只要发生错误,无论是不是浏览器生成的,都会触发 error 事件,并执行这个事件处理程序。</li>
+<li>图像也支持 error 事件。只要图像的 src 特性中的 URL 不能返回可以被识别的图像格式,就会触发 error 事件。</li>
+</ol>
+<h1 id="变量、作用域和内存问题"><a href="#变量、作用域和内存问题" class="headerlink" title="变量、作用域和内存问题"></a>变量、作用域和内存问题</h1><h2 id="基本类型和引用类型的值"><a href="#基本类型和引用类型的值" class="headerlink" title="基本类型和引用类型的值"></a>基本类型和引用类型的值</h2><p>ECMAScript 中所有函数的参数都是按值传递的</p>
+<p>当从一个变量向另一个变量复制引用类型的值时，同样也会将存储在变量对象中的值复制一份放到为新变量分配的空间中。不同的是，这个值的副本实际上是一个指针，而这个指针指向存储在堆中的一个对象。复制操作结束后，两个变量实际上将引用同一个对象。</p>
+<p>在向参数传递基本类型的值时，被传递的值会被复制给一个局部变量（即命名参数，或者用ECMAScript的概念来说，就是 arguments 对象中的一个元素）。在向参数传递引用类型的值时，会把这个值在内存中的地址复制给一个局部变量，因此这个局部变量的变化会反映在函数的外部</p>
+<h2 id="执行环境及作用域"><a href="#执行环境及作用域" class="headerlink" title="执行环境及作用域"></a>执行环境及作用域</h2><p>==标识符解析是沿着作用域链一级一级地搜索标识符的过程==。搜索过程始终从作用域链的前端开始，然后逐级地向后回溯，直至找到标识符为止（如果找不到标识符，通常会导致错误发生）。</p>
+<p>执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象（variable object），环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。 全局执行环境是最外围的一个执行环境。根据 ECMAScript实现所在的宿主环境不同，表示执行环境的对象也不一样。在Web浏览器中，全局执行环境被认为是 window 对象，因此所有全局变量和函数都是作为window对象的属性和方法创建的。某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁（全局执行环境直到应用程序退出——例如关闭网页或浏览器——时才会被销毁）。 每个函数都有自己的执行环境。当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。ECMAScript 程序中的执行流正是由这个方便的机制控制着。 当代码在一个环境中执行时，会创建变量对象的一个作用域链（scope chain）。作用域链的用途，是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端，始终都是当前执行的代码所在环境的变量对象。如果这个环境是函数，则将其活动对象（activation object）作为变量对象。活动对象在最开始时只包含一个变量，即arguments对象（这个对象在全局环境中是不存在的）。作用域链中的下一个变量对象来自包含（外部）环境，而再下一个变量对象则来自下一个包含环境。这样，一直延续到全局执行环境；全局执行环境的变量对象始终都是作用域链中的最后一个对象。</p>
+<p>内部环境可以通过作用域链访问所有的外部环境，但外部环境不能访问内部环境中的任何变量和函数。这些环境之间的联系是线性、有次序的。每个环境都可以向上搜索作用域链，以查询变量和函数名；但任何环境都不能通过向下搜索作用域链而进入另一个执行环境。</p>
+<ol>
+<li>当执行流进入下列任何一个语句时，作用域链就会得到加长：<ul>
+<li>try-catch语句的catch块；</li>
+<li>with语句。</li>
+</ul>
+</li>
+</ol>
+<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><ol>
+<li>标记清除<br> JavaScript 中最常用的垃圾收集方式是标记清除（mark-and-sweep）。</li>
+<li>引用计数<br> 另一种不太常见的垃圾收集策略叫做引用计数（reference counting）。只有IE低版本使用</li>
+<li>性能问题<br> 垃圾收集器是周期性运行的，而且如果为变量分配的内存数量很可观，那么回收工作量也是相当大的。</li>
+<li>管理内存<br> 一旦数据不再有用，最好通过将其值设置为 null 来释放其引用——这个做法叫做解除引用（dereferencing）。这一做法适用于大多数全局变量和全局对象的属性。<br> 局部变量会在它们离开执行环境时自动被解除引用</li>
+</ol>
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">觉得我的文章有帮助，可以支持一下</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/09/10/ECMAScript-面相对象程序设计/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archive/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              归档
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2017/09/10/ECMAScript-基本语法/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+    
+
+    
+	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
