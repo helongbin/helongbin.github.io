@@ -33,26 +33,19 @@ li li {
 }
 
 /*toc 样式*/
-.toc-level-1 > a {
-	color: #000;
+/*.toc-level-1 > a {
+	
 	font-size: 18px;
-	font-weight: 600; 
 }
 .toc-level-2 > a {
-	color: #000;
 	font-size: 16px;
-	font-weight: 400; 
 }
 .toc-level-3 > a {
-	color: #333;
 	font-size: 14px;
-	font-weight: 400; 
 }
 .toc-level-4 > a {
-	color: #666;
 	font-size: 12px;
-	font-weight: 400; 
-}
+}*/
 .toc-article ol {
 	padding-left: 20px;
 }
