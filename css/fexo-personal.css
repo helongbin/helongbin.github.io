@@ -13,15 +13,8 @@
 	margin: 1em 0 0 0;
 	line-height: 1.8em;
 }
-.article-content p > em {
-	font-style: normal;
-	font-weight: 500;
-}
 .article-content li > p {
 	margin-top: 0;
-}
-.article-content li > p + p{
-	margin-left: 2em;
 }
 
 /* p后面紧跟列表 */
