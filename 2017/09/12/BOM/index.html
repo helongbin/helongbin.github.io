@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>BOM | Robin的技术博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="JavaScript," />
+  
+
+  <meta name="description" content="window页面中如果有多个iframe，那么浏览器会为每个iframe分别创建一个window对象 常用属性 name：读取/设置当前窗口的名称 self：指代当前窗口本，slef===window parent：当前窗口的父窗口，在iframe中用的很多 top：指代当前窗口的最顶级父窗口，在iframe中用的很多 opener：指代创建当前窗口窗口的引用 innerHeight/innerW">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BOM">
+<meta property="og:url" content="http://yoursite.com/2017/09/12/BOM/index.html">
+<meta property="og:site_name" content="Robin的技术博客">
+<meta property="og:description" content="window页面中如果有多个iframe，那么浏览器会为每个iframe分别创建一个window对象 常用属性 name：读取/设置当前窗口的名称 self：指代当前窗口本，slef===window parent：当前窗口的父窗口，在iframe中用的很多 top：指代当前窗口的最顶级父窗口，在iframe中用的很多 opener：指代创建当前窗口窗口的引用 innerHeight/innerW">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-13T07:43:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BOM">
+<meta name="twitter:description" content="window页面中如果有多个iframe，那么浏览器会为每个iframe分别创建一个window对象 常用属性 name：读取/设置当前窗口的名称 self：指代当前窗口本，slef===window parent：当前窗口的父窗口，在iframe中用的很多 top：指代当前窗口的最顶级父窗口，在iframe中用的很多 opener：指代创建当前窗口窗口的引用 innerHeight/innerW">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/fexo-personal.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">导航</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">导航</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archive/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            归档
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#window"><span class="toc-text">window</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用属性"><span class="toc-text">常用属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用方法"><span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#document"><span class="toc-text">document</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#navigator"><span class="toc-text">navigator</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#location"><span class="toc-text">location</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用属性-1"><span class="toc-text">常用属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用方法-1"><span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#screen"><span class="toc-text">screen</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用属性-2"><span class="toc-text">常用属性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#history"><span class="toc-text">history</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用属性-3"><span class="toc-text">常用属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用方法-2"><span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#event"><span class="toc-text">event</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#事件绑定监听函数的三种方式"><span class="toc-text">事件绑定监听函数的三种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Event对象的生命周期"><span class="toc-text">Event对象的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Event对象的属性"><span class="toc-text">Event对象的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取Event对象"><span class="toc-text">获取Event对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件扩展"><span class="toc-text">事件扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#删除事件"><span class="toc-text">删除事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#封装事件对象"><span class="toc-text">封装事件对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件的类别"><span class="toc-text">事件的类别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件委托"><span class="toc-text">事件委托</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-BOM" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">BOM</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.09.12</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Robin He</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/前端/">前端</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://www.github.com/helongbin/2017/09/12/BOM/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="window"><a href="#window" class="headerlink" title="window"></a>window</h1><p>页面中如果有多个iframe，那么浏览器会为每个iframe分别创建一个window对象</p>
+<h2 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h2><ul>
+<li>name：读取/设置当前窗口的名称</li>
+<li>self：指代当前窗口本，slef===window</li>
+<li>parent：当前窗口的父窗口，在iframe中用的很多</li>
+<li>top：指代当前窗口的最顶级父窗口，在iframe中用的很多</li>
+<li>opener：指代创建当前窗口窗口的引用</li>
+<li>innerHeight/innerWidth：number类型，浏览器显示区域的宽高</li>
+<li>outerHeigth/outerWidth：number，浏览器外层窗口的宽高</li>
+</ul>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><p><strong>与窗口有关的window对象的方法</strong></p>
+<ol>
+<li>close()：关闭窗口，有些浏览器默认禁用</li>
+<li>open(‘ur’l,[name],[features])：window.open()打开窗口<br>设置参数为’_self’：当前窗口打开<br>‘_blank’：打开空白页面<br>‘_parent’：在父窗口中打开<br>‘_top’：在顶层窗口中打开<br>第三个参数为特性：left，top，width，height，是否显示菜单状态地址栏等。。。</li>
+<li>window.focus()：申请获取焦点</li>
+<li>window.blur()：失去焦点</li>
+<li>window.alert()：警告框</li>
+<li>window.prompt()：输入框</li>
+<li>window.confirm()：确认框</li>
+</ol>
+<p><strong>与定时器有关的window对象的方法</strong></p>
+<ul>
+<li>window.setInterval(exp,time)，返回已经启动的周期性定时器对象</li>
+<li>window.clearInterval(tID)</li>
+<li>window.setTimeout(exp,time)</li>
+<li>window.clearTimeout(tID)</li>
+</ul>
+<h1 id="document"><a href="#document" class="headerlink" title="document"></a>document</h1><h1 id="navigator"><a href="#navigator" class="headerlink" title="navigator"></a>navigator</h1><p>指代当前的浏览器，可用于获取当前客户端浏览器和操作系统信息<br>常用属性：</p>
+<ul>
+<li>navigator.cookieEnabled：布尔类型，true或false，表示当前浏览器是否启用了cookie功能</li>
+<li>navigator.userAgent：string类型，UA，此属性可以反映出当前客户端浏览器的类型</li>
+</ul>
+<p>常见浏览器的UserAgent值：使用正则表达式区分各个浏览器</p>
+<table>
+<thead>
+<tr>
+<th>Chrome</th>
+<th>Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.99 Safari/537.36</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Firefox</td>
+<td>Mozilla/5.0 (Windows NT 6.1; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0</td>
+</tr>
+<tr>
+<td>saFari</td>
+<td>Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2</td>
+</tr>
+<tr>
+<td>IE</td>
+<td>Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; rv:11.0) like Gecko</td>
+</tr>
+<tr>
+<td>Opera</td>
+<td>Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36 OPR/26.0.1656.60</td>
+</tr>
+</tbody>
+</table>
+<h1 id="location"><a href="#location" class="headerlink" title="location"></a>location</h1><p>包含着当前显示的页面的地址信息</p>
+<h2 id="常用属性-1"><a href="#常用属性-1" class="headerlink" title="常用属性"></a>常用属性</h2><ul>
+<li>location.href:String类型，读取/设置页面的URL地址；<br>当给location.href赋值时，也可以实现页面跳转</li>
+</ul>
+<h2 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h2><ul>
+<li>location.assign(url)：跳转至新的url（原来的url会产生历史记录）</li>
+<li>location.reload()：重新加载，即刷新当前页面</li>
+<li>location.replace(url)：替换当前的url（原来的url不会产生历史记录）</li>
+<li>location.search()：返回url中从问号至url末尾的全部内容，可以使用正则表达式匹配，然后解码提取字符串</li>
+</ul>
+<h1 id="screen"><a href="#screen" class="headerlink" title="screen"></a>screen</h1><p>表示当前浏览器所在的屏幕（PC，Pad，phone）</p>
+<h2 id="常用属性-2"><a href="#常用属性-2" class="headerlink" title="常用属性"></a>常用属性</h2><ul>
+<li>screen.colorDepth:number类型，返回当前显示器颜色的位深</li>
+<li>screen.availHeight:显示器分辨率可用高度（浏览器任务栏窗口除外）</li>
+<li><p>screen.availWidth:显示器分辨率可用宽度（浏览器任务栏窗口除外）<br>与window.innerWidth不同，后者表示窗口的可用宽度</p>
+</li>
+<li><p>screen.height:屏幕分辨率的高</p>
+</li>
+<li>screen.width:屏幕分辨率的宽</li>
+</ul>
+<h1 id="history"><a href="#history" class="headerlink" title="history"></a>history</h1><p>记录着当前浏览器窗口的URL访问历史</p>
+<h2 id="常用属性-3"><a href="#常用属性-3" class="headerlink" title="常用属性"></a>常用属性</h2><p>history.length:返回当前浏览器窗口历史列表的URL数量</p>
+<h2 id="常用方法-2"><a href="#常用方法-2" class="headerlink" title="常用方法"></a>常用方法</h2><ul>
+<li>history.back()：后退</li>
+<li>history.forward()：前进</li>
+<li>history.go(n)：n若为正，那么前进n步，n为负，那么后退n步</li>
+</ul>
+<h1 id="event"><a href="#event" class="headerlink" title="event"></a>event</h1><p>页面中每当发生某种状况时，浏览器就会自动创建一个Event对象，一个页面可能创建多个Event对象<br>Event Handler或Event Listener，指用于监听并处理事件的函</p>
+<h2 id="事件绑定监听函数的三种方式"><a href="#事件绑定监听函数的三种方式" class="headerlink" title="事件绑定监听函数的三种方式"></a>事件绑定监听函数的三种方式</h2><p><strong>事件不能绑定在未存在（或暂时未创建）的元素上，所以为动态创建后的元素绑定事件，必须先创建后绑定</strong></p>
+<ol>
+<li>直接在HTML中声明事件处理代码<br><code>&lt;a onclick=’alert(123);alert(234)’&gt;</code><br>此方法把JS混在HTML中，把网页的行为混在内容中，不推荐使用（行为与内容分离原则）            </li>
+<li><p>在脚本中为元素绑定事件处理函数<br>网页：<code>&lt;a id=’xxx’&gt;</code><br>脚本：<code>document.getElementById(‘’).onclick=function(){}</code><br>此方法把事件绑定和处理相关代码全部放在脚本中，实现了内容和行为分离，推荐使用<br>但此方法元素的一个监听事件只能绑定一个事件处理函数<br>使用这种方法：监听事件绑定事件处理函数只会绑定在冒泡阶段（从而没有捕获阶段）<br><code>onclick=‘add（‘pes’）’</code>参数不加引号表示变量，加引号表示单纯的一个字符串</p>
+</li>
+<li><p>高级事件绑定方法</p>
+<ol>
+<li><p>IE事件模型（IE8）：element.attachEvent(‘onXXX’,fn)<br>使用这种方式定义事件，事件处理函数会在全局作用域运行；this=window<br>而下面那种方式定义事件，事件处理函数会在其所属元素的作用域内运行</p>
+</li>
+<li><p>DOM事件模型（IE9支持）：element.addEventListener(‘XXX’,fn,[true|false])<br>有兼容性问题，可以逐渐为一个监听事件绑定多个事件处理函数<br>第三个可选参数为：是否使用捕获，默认为false；那么事件监听函数只会绑定在冒泡阶段；若改为true，那么事件监听函数只会绑定在捕获阶段<br>所有的事件都是由window上产生的，只是捕获默认为false（仍然会传播，但不做任何事情）<br>addEventLsitener的第三个参数：决定注册事件发生在捕获阶段还是冒泡阶段</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>如果事件源对象既绑定了捕获，也绑定了冒泡（定义了两次，一次true，一次false），那么事件的发生顺序取决于代码的执行顺序</p>
+<h2 id="Event对象的生命周期"><a href="#Event对象的生命周期" class="headerlink" title="Event对象的生命周期"></a>Event对象的生命周期</h2><p><strong>event对象的传递需要经过三个阶段</strong></p>
+<ol>
+<li>第一阶段：捕获阶段，event先传给父元素，再传给子元素（事件对象沿DOM树向下传播）</li>
+<li>第二阶段：目标触发阶段，event对象传递给事件的源头，并运行事件监听函数</li>
+<li>第三阶段：冒泡阶段，event对象先传给子元素，再传给父元素（事件对象沿DOM树向上传播）</li>
+</ol>
+<h2 id="Event对象的属性"><a href="#Event对象的属性" class="headerlink" title="Event对象的属性"></a>Event对象的属性</h2><ol>
+<li><p>获取事件源对象<br>IE：event.srcElement<br>Firefox：event.target<br>兼容性解决方案：var src=event.srcElement||event.target</p>
+</li>
+<li><p>阻止事件的默认行为<br>事件的默认行为：一个事件触发后，默认要执行的动作<br>IE：event.returnValue=false<br>DOM：event.preventDefault();<br>保证兼容性的写法：</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>( event.preventDefault )&#123;</div><div class="line">		event.preventDefault(  );		<span class="comment">//DOM</span></div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">		event.returnValue = <span class="literal">false</span>;    	<span class="comment">//IE</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>停止事件的继续传播<br>IE：event.cancelBubble=true;  //取消冒泡<br>DOm：event.stopPropagation(); //停止传递<br>兼容性写法：</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(event.stopPropagation())&#123;</div><div class="line">event.stopPropagation();</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">event.cancelBubble=<span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取事件的发生坐标<br>event.clientX和event.clientY //相对于浏览器显示区域的左上角为原点<br>event.pageX和event.pageY //以页面内容左上角为原点的坐标<br>event.screenX和event.screenY //以显示器左上角为原点的坐标<br>event.offsetX和event.offsetY //以事件源对象的左上角为坐标原点（小心事件冒泡）<br>scrollTop和scrollLeft<br>event.x和event.y //相对于浏览器显示区域的左上角为原点</p>
+</li>
+<li><p>事件的type属性<br>可以在一个函数内，通过检测event.type=‘click’|‘mouseover’来决定执行不同的操作</p>
+</li>
+</ol>
+<h2 id="获取Event对象"><a href="#获取Event对象" class="headerlink" title="获取Event对象"></a>获取Event对象</h2><p>鼠标事件源对象只有一个，且是当前鼠标所在位置，最上层（index最大）的元素对象，下层的兄弟元素无法获取到事件对象</p>
+<p>解决冒泡和捕获的弊端，增加和父元素同高宽、且透明的、在最上层的兄弟元素，通过给它绑定事件来达到不干扰的效果</p>
+<p>e.target：当前绑定事件处理函数的元素<br>e.currentTarget：当前触发事件的元素</p>
+<h2 id="事件扩展"><a href="#事件扩展" class="headerlink" title="事件扩展"></a>事件扩展</h2><h3 id="删除事件"><a href="#删除事件" class="headerlink" title="删除事件"></a>删除事件</h3><p>element.detachEvent()<br>element.removeEventListener()</p>
+<p>注意：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">btn.addEventListener(‘click’,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;alert(<span class="number">1</span>)&#125;);</div><div class="line">btn.removeEventListener(‘click’,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;alert(<span class="number">1</span>)&#125;);</div><div class="line"><span class="comment">//以上方法可以删除事件，但无法移除匿名函数所占的空间，因为两个匿名函数的引用地址不一样</span></div><div class="line">btn.addEventListener(‘click’,fn1);</div><div class="line">btn.removeEventListener(‘click’,fn1);</div><div class="line"><span class="comment">//这样可以删除事件的同时，移除函数所占的内存空间</span></div></pre></td></tr></table></figure>
+<p>移除子元素时，最好同时移除事件处理程序（或将其设为null）</p>
+<h3 id="封装事件对象"><a href="#封装事件对象" class="headerlink" title="封装事件对象"></a>封装事件对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> EventUtil=&#123;</div><div class="line">    addHandler:<span class="function"><span class="keyword">function</span>(<span class="params">element,type,handler</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(element.addEventListener)&#123;</div><div class="line">            element.addEventListener(type,handler,<span class="literal">false</span>);</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.attachEvent)&#123;</div><div class="line">            element.attachEvent(‘on’+type,handler);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            element[‘on’+type]=handler;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    removeHandler:<span class="function"><span class="keyword">function</span>(<span class="params">element,type,handler</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(element.removeEventListener)&#123;</div><div class="line">            element.removeEventListener(type,handler,<span class="literal">false</span>);</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.detachEvent)&#123;</div><div class="line">            element.detachEvent(‘on’+type,handler);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            element[‘on’+type]=<span class="literal">null</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> btn=<span class="built_in">document</span>.getElementById&#123;‘btn’&#125;;</div><div class="line"><span class="keyword">var</span> handler=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;alert(<span class="number">123</span>)&#125;;</div><div class="line">EventUtil.addHandler(btn,’click’,handler);</div><div class="line">EventUtil.removeHandler(btn,’click’,handler);</div><div class="line"><span class="comment">//以上方式没有考虑IE浏览器(IE8及以下)的作用与问题（当handler函数中涉及到this时，尤其要注意）</span></div></pre></td></tr></table></figure>
+<h3 id="事件的类别"><a href="#事件的类别" class="headerlink" title="事件的类别"></a>事件的类别</h3><p><strong>事件类别主要有以下</strong></p>
+<ul>
+<li>onload事件</li>
+<li>onselect事件</li>
+<li>onblur事件</li>
+<li>onfocus事件</li>
+<li>onclick事件</li>
+<li>onmouseover：包括子元素（mouseenter移动到子元素上不会触发）</li>
+<li>onmouseout：包括子元素（mouseleave移动到子元素上不会触发）</li>
+<li>onmousemove:鼠标移动时发生的事件</li>
+<li>onkeydown</li>
+<li>onkeypress</li>
+<li>onkeyup</li>
+<li>onchange事件</li>
+</ul>
+<h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><p>当各个子元素的监听事件一样时，通过给父元素绑定事件，然后取得事件源（子元素），判定事件源的nodeName来决定事件处理函数；这样只需要绑定一次事件处理函数</p>
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">觉得我的文章有帮助，可以支持一下</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/09/10/ECMAScript-基本语法/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/09/12/DOM/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archive/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              归档
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2017/09/12/BOM/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+    
+
+    
+	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

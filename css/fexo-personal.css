@@ -5,12 +5,23 @@
 	color: #2f2f2f;
 }
 .article-content h1, .article-content h2, .article-content h3, .article-content h4, .article-content h5, .article-content h6 {
+	margin-left: -50px;
 	font-weight: bold;
 }
 /* 修改段落样式 */
 .article-content p {
 	margin: 1em 0 0 0;
 	line-height: 1.8em;
+}
+.article-content p > em {
+	font-style: normal;
+	font-weight: 500;
+}
+.article-content li > p {
+	margin-top: 0;
+}
+.article-content li > p + p{
+	margin-left: 2em;
 }
 
 /* p后面紧跟列表 */
